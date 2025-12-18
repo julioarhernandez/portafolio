@@ -131,3 +131,18 @@
     scroll-margin-top: 4.5rem;
   }
 }
+
+@keyframes render-flash {
+  0% {
+    background-color: color-mix(in oklch, var(--primary) 12%, transparent);
+    border-color: var(--primary);
+  }
+  100% {
+    background-color: transparent;
+    border-color: var(--border);
+  }
+}
+
+.animate-render-flash {
+  animation: render-flash 0.4s ease-out;
+}
