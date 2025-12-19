@@ -1,0 +1,57 @@
+## Types vs. Interfaces
+
+Both describe the shape of an object. `interface` can be extended and merged; `type` can
+describe unions, tuples, and other shapes an interface can't.
+
+```ts
+type UserRole = "admin" | "editor" | "viewer";
+
+interface User {
+  id: string;
+  name: string;
+  role: UserRole;
+}
+
+// Interfaces can be extended...
+interface AdminUser extends User {
+  permissions: string[];
+}
+```
+
+## Generics
+
+Generics let a function or type work with the caller's type instead of a fixed one, while
+staying type-safe.
+
+```ts
+function firstItem<T>(items: T[]): T | undefined {
+  return items[0];
+}
+
+const firstUser = firstItem<User>(users); // User | undefined
+const firstNumber = firstItem([1, 2, 3]); // number | undefined (inferred)
+```
+
+## Utility Types
+
+TypeScript ships a handful of built-in types for transforming existing ones.
+
+```ts
+type PartialUser = Partial<User>; // every field optional
+type UserPreview = Pick<User, "id" | "name">; // only id and name
+type UserWithoutRole = Omit<User, "role">; // everything except role
+type UsersById = Record<string, User>; // { [id: string]: User }
+```
+
+## Inference
+
+TypeScript infers types from usage, so you often don't need to annotate everything by hand.
+
+```ts
+const roles = ["admin", "editor", "viewer"] as const;
+// type: readonly ["admin", "editor", "viewer"]
+
+function greet(user: User) {
+  return `Hi, ${user.name}`; // return type inferred as string
+}
+```
