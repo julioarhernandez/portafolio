@@ -1,0 +1,42 @@
+---
+title: "How I Built This Site: Next.js, Prisma, and Neon"
+date: "2025-12-21"
+excerpt: "A quick look at the stack behind this portfolio and a few of the decisions I made along the way."
+tags: ["Next.js", "Architecture", "Backend"]
+---
+
+This portfolio itself is one of the projects listed above, so here's a short rundown of how it's
+put together.
+
+## The stack
+
+- **Next.js (App Router)** with TypeScript, for both the frontend and the API routes
+- **Tailwind CSS + shadcn/ui** for styling and components
+- **Prisma + Neon Postgres** for the contact form and the CRUD demo in the playground
+- **Resend** for email notifications
+- **MDX** for this blog and the TypeScript patterns demo — no CMS required
+
+## A few decisions worth calling out
+
+The contact form and the playground's CRUD demo both talk to Postgres, but through separate
+tables — mixing real visitor messages with demo data felt like the wrong trade-off, even for a
+side project.
+
+```ts
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Note {
+  id      String @id @default(cuid())
+  title   String
+  content String @db.Text
+}
+```
+
+The Engineering Playground is built around a small config array rather than a plugin system —
+adding a new demo is one entry plus one route, nothing more.
