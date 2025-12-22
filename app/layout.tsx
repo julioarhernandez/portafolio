@@ -19,9 +19,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.title}`,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.title}`,
+    template: `%s — ${siteConfig.name}`,
+  },
   description: siteConfig.tagline,
+  openGraph: {
+    title: `${siteConfig.name} — ${siteConfig.title}`,
+    description: siteConfig.tagline,
+    url: siteUrl,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `${siteConfig.name} — ${siteConfig.title}`,
+    description: siteConfig.tagline,
+  },
 };
 
 export default function RootLayout({
