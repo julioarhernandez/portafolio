@@ -12,6 +12,13 @@ export function ContactSection() {
           — or reach me directly at{" "}
           <a href={`mailto:${siteConfig.email}`} className="underline underline-offset-4">
             {siteConfig.email}
+          </a>{" "}
+          or{" "}
+          <a
+            href={`tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`}
+            className="underline underline-offset-4"
+          >
+            {siteConfig.phone}
           </a>
           .
         </p>

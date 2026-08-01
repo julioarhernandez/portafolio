@@ -1,19 +1,19 @@
-// TODO: replace with your real info. This file is the single source of
-// truth for the placeholder identity/content used across the site.
 import type { ExperienceItem, NavItem, Project, SkillCategory, SocialLink } from "@/types";
 
 export const siteConfig = {
-  name: "Jane Doe",
-  title: "Senior Software Engineer",
+  name: "Julio Rodriguez",
+  title: "Senior UI/UX Front-End Developer",
   tagline:
-    "I build fast, accessible, and maintainable web applications — from React interfaces to the APIs and databases behind them.",
+    "I engineer scalable, accessible, and high-performance web applications, combining robust component architecture with modern browser capabilities.",
   about: [
-    "I'm a software engineer with a decade of experience shipping production web applications, with a focus on the modern React/Next.js ecosystem and the full stack behind it.",
-    "My day-to-day spans building accessible, performant frontends in React, TypeScript, and Tailwind, and designing the Node.js APIs, PostgreSQL schemas, and cloud infrastructure that support them.",
-    "I care most about clean architecture, readable code, and building software that stays easy to change as requirements evolve — not just software that works today.",
+    "I'm a front-end developer with close to two decades of experience shipping production web applications for airlines, cruise lines, and consumer brands, with deep expertise across React, Vue, and vanilla JavaScript.",
+    "I specialize in translating high-fidelity design into pixel-perfect, DRY, reusable components — following Atomic Design principles and building style guides that keep design and engineering in sync across large product teams.",
+    "Beyond components, I own the details that make a site fast and discoverable: SEO, Core Web Vitals, and Progressive Web App features like service workers and push notifications, backed by tools like Lighthouse, YellowLab, and WebPageTest.",
+    "I'm an active mentor and lifelong learner — always exploring new frameworks (currently Svelte, RedwoodJS, GraphQL) and sharing what I learn with the teams I work on.",
   ],
-  email: "hello@example.com",
-  location: "Remote",
+  email: "julior@duck.com",
+  phone: "(786) 5205860",
+  location: "Miami, FL",
   resumeUrl: "/resume.pdf",
 } as const;
 
@@ -28,125 +28,171 @@ export const navItems: NavItem[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/your-username", icon: "github" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/your-username", icon: "linkedin" },
+  { label: "GitHub", href: "https://github.com/julioarhernandez", icon: "github" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/julioarhernandez", icon: "linkedin" },
   { label: "Email", href: `mailto:${siteConfig.email}`, icon: "mail" },
 ];
 
 export const experience: ExperienceItem[] = [
   {
-    company: "Acme Software Co.",
-    role: "Senior Software Engineer",
-    period: "2022 — Present",
+    company: "Norwegian Cruise Line Holdings (NCLH)",
+    role: "Senior UI/UX Front-End Developer",
+    period: "Jul 2018 — Present",
     summary:
-      "Lead frontend architecture for a B2B SaaS platform, owning the migration from a legacy SPA to Next.js.",
+      "Lead front-end development for NCLH's booking and marketing platforms, translating design-system mockups into production Vue.js components at scale.",
     responsibilities: [
-      "Design and build core product features end-to-end, from database schema to UI",
-      "Own the Next.js App Router migration and the component library it's built on",
-      "Mentor mid-level engineers through code review and architecture discussions",
+      "Build UI/UX using Atomic Design patterns on top of Google Closure Templates (Soy)",
+      "Develop and maintain DRY, reusable components in Vue.js integrated with the Soy templating layer",
+      "Translate Adobe XD, Photoshop, and Sketch/InVision mockups into pixel-perfect, interactive modules",
+      "Use Webpack, ES6, jQuery, and SASS to build and bundle production front-end features",
     ],
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Docker"],
+    technologies: ["Vue.js", "ES6", "Webpack", "SASS", "jQuery", "Google Closure Templates"],
     achievements: [
-      "Cut median page load time by 40% after migrating to the App Router with streaming SSR",
-      "Introduced a shared component library that reduced new-feature build time by ~30%",
+      "Sole owner of a component system spanning multiple booking and marketing surfaces, keeping design and engineering consistent across a long-running, high-traffic platform",
     ],
   },
   {
-    company: "Northwind Digital",
-    role: "Software Engineer",
-    period: "2019 — 2022",
+    company: "Everymundo",
+    role: "Front-End Developer",
+    period: "Dec 2016 — Jul 2018",
     summary:
-      "Full-stack engineer on a small team building customer-facing dashboards and internal tooling.",
+      "Built customer-facing booking experiences for airline clients, replacing legacy Twig modules with a documented, reusable React component library.",
     responsibilities: [
-      "Built REST APIs and background jobs powering real-time analytics dashboards",
-      "Implemented CI/CD pipelines to automate testing and deployment",
-      "Partnered directly with design and product to scope and ship features",
+      "Translated airline client mockups into pixel-perfect, accessible, SEO-ready websites",
+      "Built React components (booking flows, price calendars, flight accordions) matching each client's brand identity",
+      "Created a customizable style guide in Storybook, replacing legacy Twig-based modules",
+      "Wrote unit and integration tests with Karma, Mocha, and Chai",
+      "Implemented Progressive Web App features to improve airline site performance and UX",
     ],
-    technologies: ["React", "Node.js", "Express", "PostgreSQL", "AWS"],
+    technologies: ["React", "JavaScript (ES6)", "Bootstrap", "Less", "Karma", "Mocha", "Chai"],
     achievements: [
-      "Rebuilt the analytics pipeline, cutting dashboard load times from ~8s to under 1s",
-      "Rolled out automated CI/CD, reducing deploy time from 45 minutes to 5",
+      "Replaced legacy Twig templating with a reusable, Storybook-documented React component library used across multiple airline clients",
+      "Shipped PWA capabilities that measurably improved load performance and user experience for airline booking sites",
     ],
   },
   {
-    company: "Bright Labs",
-    role: "Junior Developer",
-    period: "2017 — 2019",
-    summary: "Started my career building and maintaining marketing sites and internal tools.",
+    company: "LVMH OnBoard.com",
+    role: "Front-End Developer",
+    period: "Nov 2015 — Dec 2016",
+    summary:
+      "Converted PSD designs into interactive features on a Drupal CMS, with a strong focus on responsive design, SEO, and email campaign delivery.",
     responsibilities: [
-      "Built responsive marketing pages from design mockups",
-      "Maintained and extended an internal admin tool used by the operations team",
+      "Brought PSD designs and interactive features to life on a Drupal CMS using AJAX and AngularJS",
+      "Built responsive layouts with Bootstrap 3 and validated site health with MOZ, Google Insights, YellowLab, and WebPageTest",
+      "Developed email campaigns using Mailchimp and Mandrill",
+      "Introduced service workers and push notification features to the site",
     ],
-    technologies: ["JavaScript", "React", "CSS"],
-    achievements: ["Became the go-to engineer for accessibility fixes across the marketing site"],
+    technologies: ["AngularJS", "Drupal", "Bootstrap 3", "AJAX", "Mailchimp", "Mandrill"],
+    achievements: [
+      "Introduced service worker and push notification support, an early PWA feature for the platform",
+    ],
+  },
+  {
+    company: "Original Impressions",
+    role: "Web Developer",
+    period: "May 2015 — Nov 2015",
+    summary:
+      "Developed and maintained websites for national and regional brands, alongside marketing artwork production.",
+    responsibilities: [
+      "Built and maintained customer websites for brands including Burger King, Club Med, Pollo Tropical, Handtevy, MapaTravel Group, and Gibraltar Bank",
+      "Prepared and customized artwork for marketing and advertising campaigns using the Adobe Suite",
+    ],
+    technologies: ["HTML5", "CSS3", "JavaScript", "Adobe Suite"],
+    achievements: ["Delivered web updates across six concurrent client accounts without missing a deadline"],
+  },
+  {
+    company: "Independent / Freelance",
+    role: "Front-End Developer",
+    period: "2005 — Present",
+    summary:
+      "Ongoing freelance web design and development practice, from WordPress customization to modern React side projects.",
+    responsibilities: [
+      "Design and build websites for individual and small-business clients, including bizmarketing.us, dealby.us, and apggraphics.com",
+      "Customize WordPress themes and plugins, and optimize sites for SEO and email marketing",
+      "Build React side projects using Hooks, Redux, and the Context API",
+    ],
+    technologies: ["React", "WordPress", "JavaScript", "SEO"],
+    achievements: [
+      "Maintained a two-decade freelance practice alongside full-time roles, staying hands-on with new frameworks and tooling",
+    ],
   },
 ];
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Frontend",
+    title: "Core & Languages",
+    skills: ["HTML5", "CSS3", "JavaScript (ES6)", "JSON", "SASS", "LESS", "BEM", "PWA"],
+  },
+  {
+    title: "Frameworks & Libraries",
+    skills: ["React (Hooks)", "Vue.js", "jQuery", "jQuery UI", "Bootstrap", "GSAP", "Handlebars"],
+  },
+  {
+    title: "Tools & Platforms",
     skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "Accessibility",
-      "Responsive Design",
+      "Git",
+      "Gulp",
+      "Webpack",
+      "Node.js",
+      "Jekyll",
+      "WordPress",
+      "Google Analytics",
+      "Google Insights",
+      "Mailchimp",
+      "Mandrill",
     ],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "REST APIs", "PostgreSQL", "Prisma"],
+    title: "Design",
+    skills: [
+      "Adobe XD",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Adobe InDesign",
+      "Sketch",
+      "InVision",
+      "Atomic Design",
+    ],
   },
   {
-    title: "Tools & Cloud",
-    skills: ["Git", "Docker", "Cloud Platforms", "CI/CD"],
-  },
-  {
-    title: "Architecture",
-    skills: ["Component Design", "State Management", "Performance Optimization", "Clean Code"],
+    title: "Currently Learning",
+    skills: ["Svelte", "RedwoodJS", "Gatsby", "GraphQL"],
   },
 ];
 
 export const projects: Project[] = [
   {
-    slug: "realtime-dashboard",
-    name: "Realtime Analytics Dashboard",
+    slug: "nclh-booking-components",
+    name: "NCLH Booking & Marketing Components",
     description:
-      "A customer-facing analytics dashboard with live-updating charts, built to replace a slow, polling-based legacy version.",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "WebSockets"],
+      "Reusable Vue.js component system for Norwegian Cruise Line's booking and marketing pages, built on Google Closure (Soy) templates and Atomic Design principles.",
+    technologies: ["Vue.js", "Google Closure Templates", "SASS", "Webpack"],
     keyDecisions: [
-      "Chose server-sent events over WebSockets for one-way data flow, simplifying the client",
-      "Pre-aggregated metrics in Postgres materialized views to keep query latency low at scale",
+      "Layered Vue.js on top of an existing Soy templating system so teams could adopt component-based UI incrementally",
+      "Followed Atomic Design to keep booking-flow components consistent across dozens of marketing pages",
     ],
-    repoUrl: "https://github.com/your-username/realtime-dashboard",
-    demoUrl: "https://example.com",
   },
   {
-    slug: "design-system",
-    name: "Component Design System",
+    slug: "airline-booking-react-components",
+    name: "Airline Booking Component Library",
     description:
-      "An internal React component library and documentation site used across three product teams.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Storybook"],
+      "A Storybook-documented React component library (booking widgets, price calendars, flight accordions) used across multiple airline clients at Everymundo, replacing a legacy Twig-based system.",
+    technologies: ["React", "Storybook", "Karma", "Mocha", "Chai"],
     keyDecisions: [
-      "Built on top of unstyled primitives (Base UI) for accessibility, layering on a consistent design language",
-      "Used CVA for variant styling so components stay type-safe and easy to extend",
+      "Designed components to be brand-configurable so a single library could serve many airline clients",
+      "Backed components with Karma/Mocha/Chai tests to keep booking-critical UI regression-free",
     ],
-    repoUrl: "https://github.com/your-username/design-system",
   },
   {
-    slug: "task-tracker-api",
-    name: "Task Tracker API",
+    slug: "pwa-rollout",
+    name: "Progressive Web App Rollout",
     description:
-      "A REST API for a small project-management tool, with auth, role-based permissions, and webhook support.",
-    technologies: ["Node.js", "Express", "PostgreSQL", "Prisma", "Docker"],
+      "Introduced service workers and push notifications across airline and cruise line sites to improve repeat-visit performance and re-engagement.",
+    technologies: ["Service Workers", "Push API", "Lighthouse", "WebPageTest"],
     keyDecisions: [
-      "Modeled permissions as a small policy layer instead of scattering role checks through route handlers",
-      "Containerized the app early so local dev matched production from day one",
+      "Prioritized caching strategies around booking-flow assets, the highest-traffic paths",
+      "Validated improvements with Lighthouse, YellowLab, and WebPageTest before rollout",
     ],
-    repoUrl: "https://github.com/your-username/task-tracker-api",
   },
   {
     slug: "portfolio-site",
@@ -158,6 +204,6 @@ export const projects: Project[] = [
       "Kept the whole stack file-based and dependency-light rather than reaching for a CMS or admin panel",
       "Used Route Handlers (not Server Actions) for the CRUD demo so the client → API → DB flow stays visible",
     ],
-    repoUrl: "https://github.com/your-username/portfolio",
+    repoUrl: "https://github.com/julioarhernandez/portfolio",
   },
 ];
