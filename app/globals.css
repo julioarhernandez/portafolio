@@ -52,21 +52,21 @@
 
 :root {
   /* Migration surface: update this semantic palette block for a new theme. */
-  --theme-background: #fffafa;
-  --theme-surface: #fffafa;
-  --theme-foreground: #496580;
-  --theme-muted-surface: #f3f7fa;
-  --theme-muted-foreground: #60758a;
-  --theme-primary: #496580;
-  --theme-primary-foreground: #fffafa;
-  --theme-secondary: #baddff;
-  --theme-secondary-foreground: #496580;
-  --theme-accent: #bafff5;
-  --theme-accent-foreground: #496580;
-  --theme-border: #baddff;
-  --theme-destructive: #496580;
-  --theme-destructive-foreground: #fffafa;
-  --theme-highlight: #ffdbbb;
+  --theme-background: #fbf7f1;
+  --theme-surface: #fffdfa;
+  --theme-foreground: #132d50;
+  --theme-muted-surface: #f3ebe1;
+  --theme-muted-foreground: #5c6570;
+  --theme-primary: #b84d2e;
+  --theme-primary-foreground: #fffaf4;
+  --theme-secondary: #eadfce;
+  --theme-secondary-foreground: #132d50;
+  --theme-accent: #d8794f;
+  --theme-accent-foreground: #132d50;
+  --theme-border: #dfd2c5;
+  --theme-destructive: #a63c28;
+  --theme-destructive-foreground: #fffaf4;
+  --theme-highlight: #f2c7a9;
 
   /* Stable semantic roles consumed by the component system. */
   --background: var(--theme-background);
@@ -105,21 +105,21 @@
 
 .dark {
   /* Dark-mode migration surface; semantic roles below stay unchanged. */
-  --theme-background: #243444;
-  --theme-surface: #2f455b;
-  --theme-foreground: #fffafa;
-  --theme-muted-surface: #334c63;
-  --theme-muted-foreground: #baddff;
-  --theme-primary: #baddff;
-  --theme-primary-foreground: #243444;
-  --theme-secondary: #496580;
-  --theme-secondary-foreground: #fffafa;
-  --theme-accent: #bafff5;
-  --theme-accent-foreground: #243444;
-  --theme-border: #496580;
-  --theme-destructive: #bafff5;
-  --theme-destructive-foreground: #243444;
-  --theme-highlight: #496580;
+  --theme-background: #132d50;
+  --theme-surface: #1d3a5a;
+  --theme-foreground: #fffaf4;
+  --theme-muted-surface: #244564;
+  --theme-muted-foreground: #d8cbbb;
+  --theme-primary: #e17b56;
+  --theme-primary-foreground: #132d50;
+  --theme-secondary: #b84d2e;
+  --theme-secondary-foreground: #fffaf4;
+  --theme-accent: #d8794f;
+  --theme-accent-foreground: #132d50;
+  --theme-border: #46627d;
+  --theme-destructive: #f2c7a9;
+  --theme-destructive-foreground: #132d50;
+  --theme-highlight: #b84d2e;
 
   --background: var(--theme-background);
   --foreground: var(--theme-foreground);
@@ -216,3 +216,4 @@
 .animate-render-flash {
   animation: render-flash 0.4s ease-out;
 }
+
