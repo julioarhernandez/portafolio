@@ -1,4 +1,4 @@
-import type { ExperienceItem, NavItem, Project, SkillCategory, SocialLink } from "@/types";
+import type { ExperienceItem, NavItem, Project, SocialLink } from "@/types";
 
 export const siteConfig = {
   name: "Julio Rodriguez",
@@ -118,48 +118,47 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export const skillCategories: SkillCategory[] = [
-  {
-    title: "Core & Languages",
-    skills: ["HTML5", "CSS3", "JavaScript (ES6)", "JSON", "SASS", "LESS", "BEM", "PWA"],
-  },
-  {
-    title: "Frameworks & Libraries",
-    skills: ["React (Hooks)", "Vue.js", "jQuery", "jQuery UI", "Bootstrap", "GSAP", "Handlebars"],
-  },
-  {
-    title: "Tools & Platforms",
-    skills: [
-      "Git",
-      "Gulp",
-      "Webpack",
-      "Node.js",
-      "Jekyll",
-      "WordPress",
-      "Google Analytics",
-      "Google Insights",
-      "Mailchimp",
-      "Mandrill",
-    ],
-  },
-  {
-    title: "Design",
-    skills: [
-      "Adobe XD",
-      "Adobe Photoshop",
-      "Adobe Illustrator",
-      "Adobe InDesign",
-      "Sketch",
-      "InVision",
-      "Atomic Design",
-    ],
-  },
-  {
-    title: "Currently Learning",
-    skills: ["Svelte", "RedwoodJS", "Gatsby", "GraphQL"],
-  },
+export const featuredSkills = [
+  "HTML5",
+  "CSS3",
+  "JavaScript (ES6)",
+  "React (Hooks)",
+  "Vue.js",
+  "SASS",
+  "LESS",
+  "PWA",
+  "Node.js",
+  "Webpack",
+  "Git",
+  "WordPress",
+  "Atomic Design",
+  "GraphQL",
 ];
 
+export const additionalSkills = [
+  "JSON",
+  "BEM",
+  "jQuery",
+  "jQuery UI",
+  "Bootstrap",
+  "GSAP",
+  "Handlebars",
+  "Gulp",
+  "Jekyll",
+  "Google Analytics",
+  "Google Insights",
+  "Mailchimp",
+  "Mandrill",
+  "Adobe XD",
+  "Adobe Photoshop",
+  "Adobe Illustrator",
+  "Adobe InDesign",
+  "Sketch",
+  "InVision",
+  "Svelte",
+  "RedwoodJS",
+  "Gatsby",
+];
 export const projects: Project[] = [
   {
     slug: "nclh-booking-components",
