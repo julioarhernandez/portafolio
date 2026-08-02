@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PlaygroundPage() {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+    <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
       <Reveal>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           Engineering Playground
