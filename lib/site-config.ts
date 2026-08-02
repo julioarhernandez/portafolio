@@ -12,7 +12,6 @@ export const siteConfig = {
     "I'm an active mentor and lifelong learner — always exploring new frameworks (currently Svelte, RedwoodJS, GraphQL) and sharing what I learn with the teams I work on.",
   ],
   email: "julior@duck.com",
-  phone: "(786) 520-5860",
   location: "Broward, FL",
   resumeUrl: "/resume.pdf",
 } as const;
