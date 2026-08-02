@@ -2,18 +2,18 @@ import type { ExperienceItem, NavItem, Project, SocialLink } from "@/types";
 
 export const siteConfig = {
   name: "Julio Rodriguez",
-  title: "Senior UI/UX Front-End Developer",
+  title: "Software Engineer",
   tagline:
-    "I engineer scalable, accessible, and high-performance web applications, combining robust component architecture with modern browser capabilities.",
+    "I build scalable, accessible, and high-performance web applications, combining strong engineering foundations with thoughtful user experiences.",
   about: [
-    "I'm a front-end developer with close to two decades of experience shipping production web applications for airlines, cruise lines, and consumer brands, with deep expertise across React, Vue, and vanilla JavaScript.",
-    "I specialize in translating high-fidelity design into pixel-perfect, DRY, reusable components — following Atomic Design principles and building style guides that keep design and engineering in sync across large product teams.",
+    "I've been building web applications since 2006, from the table-based layouts of the early web to large-scale production systems. Since 2016, I've worked in the United States delivering booking, marketing, and customer-facing applications for airlines, cruise lines, and consumer brands.",
+    "I specialize in translating high-fidelity design into accessible, pixel-perfect, reusable components — applying Atomic Design principles and building style guides that keep design and engineering in sync across large product teams.",
     "Beyond components, I own the details that make a site fast and discoverable: SEO, Core Web Vitals, and Progressive Web App features like service workers and push notifications, backed by tools like Lighthouse, YellowLab, and WebPageTest.",
     "I'm an active mentor and lifelong learner — always exploring new frameworks (currently Svelte, RedwoodJS, GraphQL) and sharing what I learn with the teams I work on.",
   ],
   email: "julior@duck.com",
-  phone: "(786) 5205860",
-  location: "Miami, FL",
+  phone: "(786) 520-5860",
+  location: "Broward, FL",
   resumeUrl: "/resume.pdf",
 } as const;
 
@@ -36,8 +36,8 @@ export const socialLinks: SocialLink[] = [
 export const experience: ExperienceItem[] = [
   {
     company: "Norwegian Cruise Line Holdings (NCLH)",
-    role: "Senior UI/UX Front-End Developer",
-    period: "Jul 2018 — Present",
+    role: "Senior UI/UX Developer",
+    period: "Jul 2018 - Present",
     summary:
       "Lead front-end development for NCLH's booking and marketing platforms, translating design-system mockups into production Vue.js components at scale.",
     responsibilities: [
@@ -54,7 +54,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "Everymundo",
     role: "Front-End Developer",
-    period: "Dec 2016 — Jul 2018",
+    period: "Dec 2016 - Jul 2018",
     summary:
       "Built customer-facing booking experiences for airline clients, replacing legacy Twig modules with a documented, reusable React component library.",
     responsibilities: [
@@ -73,7 +73,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "LVMH OnBoard.com",
     role: "Front-End Developer",
-    period: "Nov 2015 — Dec 2016",
+    period: "Nov 2015 - Dec 2016",
     summary:
       "Converted PSD designs into interactive features on a Drupal CMS, with a strong focus on responsive design, SEO, and email campaign delivery.",
     responsibilities: [
@@ -90,7 +90,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "Original Impressions",
     role: "Web Developer",
-    period: "May 2015 — Nov 2015",
+    period: "May 2015 - Nov 2015",
     summary:
       "Developed and maintained websites for national and regional brands, alongside marketing artwork production.",
     responsibilities: [
@@ -103,7 +103,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "Independent / Freelance",
     role: "Front-End Developer",
-    period: "2005 — Present",
+    period: "2005 - Present",
     summary:
       "Ongoing freelance web design and development practice, from WordPress customization to modern React side projects.",
     responsibilities: [
