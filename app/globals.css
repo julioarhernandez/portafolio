@@ -181,11 +181,11 @@
   }
 }
 
-.hero-surface {
+/* .hero-surface {
   background:
     radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 34%),
     radial-gradient(circle at 88% 78%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 32%);
-}
+} */
 
 @layer base {
   * {
