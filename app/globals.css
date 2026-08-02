@@ -52,20 +52,21 @@
 
 :root {
   /* Migration surface: update this semantic palette block for a new theme. */
-  --theme-background: #f0e5d8;
-  --theme-surface: #fffaf5;
-  --theme-foreground: #2f2927;
-  --theme-muted-surface: #e8ddd2;
-  --theme-muted-foreground: #6e625a;
-  --theme-primary: #c84b31;
-  --theme-primary-foreground: #fffaf5;
-  --theme-secondary: #e5eeee;
-  --theme-secondary-foreground: #243536;
-  --theme-accent: #a5c9ca;
-  --theme-accent-foreground: #243536;
-  --theme-border: #d9bf77;
-  --theme-destructive: #b23a2b;
-  --theme-destructive-foreground: #fffaf5;
+  --theme-background: #fffafa;
+  --theme-surface: #fffafa;
+  --theme-foreground: #496580;
+  --theme-muted-surface: #f3f7fa;
+  --theme-muted-foreground: #60758a;
+  --theme-primary: #496580;
+  --theme-primary-foreground: #fffafa;
+  --theme-secondary: #baddff;
+  --theme-secondary-foreground: #496580;
+  --theme-accent: #bafff5;
+  --theme-accent-foreground: #496580;
+  --theme-border: #baddff;
+  --theme-destructive: #496580;
+  --theme-destructive-foreground: #fffafa;
+  --theme-highlight: #ffdbbb;
 
   /* Stable semantic roles consumed by the component system. */
   --background: var(--theme-background);
@@ -104,20 +105,21 @@
 
 .dark {
   /* Dark-mode migration surface; semantic roles below stay unchanged. */
-  --theme-background: #241c1b;
-  --theme-surface: #322724;
-  --theme-foreground: #fffaf5;
-  --theme-muted-surface: #3b302d;
-  --theme-muted-foreground: #cbbdb3;
-  --theme-primary: #e27a61;
-  --theme-primary-foreground: #241c1b;
-  --theme-secondary: #294143;
-  --theme-secondary-foreground: #e5eeee;
-  --theme-accent: #78aeb0;
-  --theme-accent-foreground: #172526;
-  --theme-border: #806e4b;
-  --theme-destructive: #ef8b78;
-  --theme-destructive-foreground: #241c1b;
+  --theme-background: #243444;
+  --theme-surface: #2f455b;
+  --theme-foreground: #fffafa;
+  --theme-muted-surface: #334c63;
+  --theme-muted-foreground: #baddff;
+  --theme-primary: #baddff;
+  --theme-primary-foreground: #243444;
+  --theme-secondary: #496580;
+  --theme-secondary-foreground: #fffafa;
+  --theme-accent: #bafff5;
+  --theme-accent-foreground: #243444;
+  --theme-border: #496580;
+  --theme-destructive: #bafff5;
+  --theme-destructive-foreground: #243444;
+  --theme-highlight: #496580;
 
   --background: var(--theme-background);
   --foreground: var(--theme-foreground);
