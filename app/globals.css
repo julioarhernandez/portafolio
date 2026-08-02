@@ -409,7 +409,7 @@
   }
 
   .about-code-badge {
-    right: 24px;
+    left: 24px;
     bottom: 0;
     width: 3.4rem;
     height: 3.4rem;
@@ -419,7 +419,7 @@
 
   .about-dot-grid {
     top: 22px;
-    right: 0;
+    left: 0;
     width: 76px;
     height: 62px;
     background-size: 14px 14px;
