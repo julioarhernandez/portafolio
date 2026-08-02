@@ -23,8 +23,7 @@ export const navItems: NavItem[] = [
   { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "/#projects" },
   { label: "Playground", href: "/playground" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Blog", href: "/blog" }
 ];
 
 export const socialLinks: SocialLink[] = [
