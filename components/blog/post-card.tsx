@@ -19,13 +19,19 @@ export function PostCard({ post }: { post: Post }) {
                 timeZone: "UTC",
               })}
             </p>
-            <CardTitle className="text-lg">{post.frontmatter.title}</CardTitle>
+            <CardTitle className="text-lg text-primary">{post.frontmatter.title}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">{post.frontmatter.excerpt}</p>
+            <p className="text-sm text-muted-foreground">
+              {post.frontmatter.excerpt}
+            </p>
             <div className="flex flex-wrap gap-1.5">
               {post.frontmatter.tags.map((tag) => (
-                <Badge key={tag} variant="outline">
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="bg-secondary text-secondary-foreground"
+                >
                   {tag}
                 </Badge>
               ))}

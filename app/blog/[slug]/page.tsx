@@ -25,7 +25,11 @@ export async function generateMetadata({
   }
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
 
   let post;
@@ -39,7 +43,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-      <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">
+      <Link
+        href="/blog"
+        className="text-sm text-muted-foreground hover:text-foreground"
+      >
         ← Blog
       </Link>
       <p className="mt-3 text-xs text-muted-foreground">
@@ -55,7 +62,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </h1>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {frontmatter.tags.map((tag) => (
-          <Badge key={tag} variant="outline">
+          <Badge
+            key={tag}
+            variant="outline"
+            className="bg-secondary text-secondary-foreground"
+          >
             {tag}
           </Badge>
         ))}
