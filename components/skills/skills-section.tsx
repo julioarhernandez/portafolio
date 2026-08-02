@@ -1,7 +1,9 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
+import { Collapse } from "@/components/motion/collapse";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -49,24 +51,31 @@ export function SkillsSection() {
                   className="flex flex-wrap gap-2"
                   aria-labelledby="core-stack-heading"
                 >
-                  {featuredSkills.map((skill, index) => (
-                    <li
-                      key={skill}
-                      className={
-                        !isCoreExpanded && index >= MAX_VISIBLE_SKILLS
-                          ? "hidden"
-                          : undefined
-                      }
-                    >
+                  {featuredSkills.slice(0, MAX_VISIBLE_SKILLS).map((skill, index) => (
+                    <li key={skill}>
                       <Badge
                         variant="outline"
-                        className={`h-9 border px-3 text-sm ${badgeColors[index % badgeColors.length]}`}
+                        className={"h-9 border px-3 text-sm " + badgeColors[index % badgeColors.length]}
                       >
                         {skill}
                       </Badge>
                     </li>
                   ))}
                 </ul>
+                <Collapse open={isCoreExpanded}>
+                  <ul className="flex flex-wrap gap-2 pt-2" aria-label="More core stack skills">
+                    {featuredSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
+                      <li key={skill}>
+                        <Badge
+                          variant="outline"
+                          className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS) % badgeColors.length]}
+                        >
+                          {skill}
+                        </Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </Collapse>
                 {featuredSkills.length > MAX_VISIBLE_SKILLS && (
                   <button
                     type="button"
@@ -76,6 +85,7 @@ export function SkillsSection() {
                     aria-controls="core-stack-list"
                   >
                     {isCoreExpanded ? "Show less" : "Show more"}
+                    <ChevronDown className={"ml-1 inline-block size-4 transition-transform duration-200 " + (isCoreExpanded ? "rotate-180" : "")} aria-hidden="true" />
                   </button>
                 )}
               </div>
@@ -94,24 +104,31 @@ export function SkillsSection() {
                   className="flex flex-wrap gap-2"
                   aria-labelledby="additional-skills-heading"
                 >
-                  {additionalSkills.map((skill, index) => (
-                    <li
-                      key={skill}
-                      className={
-                        !isAdditionalExpanded && index >= MAX_VISIBLE_SKILLS
-                          ? "hidden"
-                          : undefined
-                      }
-                    >
+                  {additionalSkills.slice(0, MAX_VISIBLE_SKILLS).map((skill, index) => (
+                    <li key={skill}>
                       <Badge
                         variant="outline"
-                        className={`h-9 border px-3 text-sm ${badgeColors[(index + featuredSkills.length) % badgeColors.length]}`}
+                        className={"h-9 border px-3 text-sm " + badgeColors[(index + featuredSkills.length) % badgeColors.length]}
                       >
                         {skill}
                       </Badge>
                     </li>
                   ))}
                 </ul>
+                <Collapse open={isAdditionalExpanded}>
+                  <ul className="flex flex-wrap gap-2 pt-2" aria-label="More additional skills">
+                    {additionalSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
+                      <li key={skill}>
+                        <Badge
+                          variant="outline"
+                          className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS + featuredSkills.length) % badgeColors.length]}
+                        >
+                          {skill}
+                        </Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </Collapse>
                 {additionalSkills.length > MAX_VISIBLE_SKILLS && (
                   <button
                     type="button"
@@ -123,6 +140,7 @@ export function SkillsSection() {
                     aria-controls="additional-skills-list"
                   >
                     {isAdditionalExpanded ? "Show less" : "Show more"}
+                    <ChevronDown className={"ml-1 inline-block size-4 transition-transform duration-200 " + (isAdditionalExpanded ? "rotate-180" : "")} aria-hidden="true" />
                   </button>
                 )}
               </div>

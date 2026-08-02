@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { Collapse } from "@/components/motion/collapse";
 import { Button } from "@/components/ui/button";
 import { navItems, siteConfig } from "@/lib/site-config";
 
@@ -48,20 +49,22 @@ export function Navbar() {
         </div>
       </div>
 
-      {open && (
-        <nav className="flex flex-col gap-1 border-t border-border/60 px-4 py-3 md:hidden">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-md px-2 py-2 text-xs font-medium text-muted-foreground sm:text-sm transition-colors hover:bg-muted hover:text-foreground"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      )}
+      <div className="absolute inset-x-0 top-full md:hidden">
+        <Collapse open={open}>
+          <nav className="flex flex-col gap-1 border-b border-border/60 bg-background/95 px-4 py-3 shadow-lg backdrop-blur">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:text-sm"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </Collapse>
+      </div>
     </header>
   );
 }
