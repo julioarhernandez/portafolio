@@ -105,7 +105,7 @@
 
 .dark {
   /* Dark-mode migration surface; semantic roles below stay unchanged. */
-  --theme-background: #132d50;
+  --theme-background: #091e39;
   --theme-surface: #1d3a5a;
   --theme-foreground: #fffaf4;
   --theme-muted-surface: #244564;
