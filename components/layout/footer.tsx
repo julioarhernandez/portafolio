@@ -4,7 +4,12 @@ import Link from "next/link";
 import { GithubIcon, LinkedinIcon } from "@/components/layout/brand-icons";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 
-const icons = { github: GithubIcon, linkedin: LinkedinIcon, mail: Mail, twitter: Mail } as const;
+const icons = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  mail: Mail,
+  twitter: Mail
+} as const;
 
 export function Footer() {
   return (
