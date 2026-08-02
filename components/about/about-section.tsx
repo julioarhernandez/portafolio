@@ -1,3 +1,4 @@
+import { CodeOrnament } from "@/components/decorations/code-ornament";
 import { Reveal } from "@/components/motion/reveal";
 import { siteConfig } from "@/lib/site-config";
 
@@ -6,31 +7,11 @@ export function AboutSection() {
     <section id="about" className="border-b border-border/70 bg-secondary/35">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-16">
-          <Reveal className="about-visual" aria-hidden="true">
-            <div className="about-ornament">
-              <div className="about-dot-grid" />
-              <div className="about-browser">
-                <div className="about-browser-bar">
-                  <span className="about-window-dot" />
-                  <span className="about-window-dot" />
-                  <span className="about-window-dot" />
-                </div>
-                <div className="about-browser-body">
-                  <div className="about-browser-input" />
-                  <div className="about-browser-columns">
-                    <div className="about-browser-block about-browser-block-tall" />
-                    <div className="about-browser-stack">
-                      <div className="about-browser-block" />
-                      <div className="about-browser-block about-browser-block-wide" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="about-code-badge">&lt; / &gt;</div>
-            </div>
+          <Reveal className="about-visual order-1 lg:order-1" aria-hidden="true">
+            <CodeOrnament />
           </Reveal>
 
-          <div>
+          <div className="order-2 lg:order-2">
             <Reveal>
               <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">About Me</h2>
             </Reveal>
