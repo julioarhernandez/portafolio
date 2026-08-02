@@ -7,12 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { additionalSkills, featuredSkills } from "@/lib/site-config";
 
-const badgeColors = [
-  "border-accent/70 bg-accent/35 text-accent-foreground",
-  "border-primary/45 bg-primary/10 text-primary",
-  "border-border bg-muted text-foreground",
-  "border-secondary bg-secondary text-secondary-foreground",
-];
+const badgeColors = ["theme-badge-accent", "theme-badge-primary", "theme-badge-border", "theme-badge-secondary"];
 
 export function SkillsSection() {
   const [isExpanded, setIsExpanded] = useState(false);

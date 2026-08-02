@@ -5,18 +5,15 @@ function hashIndex(input: string) {
 }
 
 export function ProjectImagePlaceholder({ name }: { name: string }) {
-  const gradient = [
-    ["#c84b31", "#a5c9ca"],
-    ["#a5c9ca", "#d9bf77"],
-    ["#d9bf77", "#c84b31"],
+  const gradientClass = [
+    "project-gradient-primary-accent",
+    "project-gradient-accent-border",
+    "project-gradient-border-primary",
   ][hashIndex(name)];
 
   return (
     <div
-      className="flex aspect-video items-center justify-center text-4xl font-semibold text-white/90"
-      style={{
-        background: `linear-gradient(135deg, ${gradient[0]}, ${gradient[1]})`,
-      }}
+      className={`${gradientClass} flex aspect-video items-center justify-center text-4xl font-semibold text-white/90`}
       aria-hidden="true"
     >
       {name.charAt(0).toUpperCase()}
