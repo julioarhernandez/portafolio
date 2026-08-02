@@ -14,7 +14,7 @@ export function ExperienceSection() {
         </div>
       </Reveal>
       <div className="relative sm:ml-2">
-        <div aria-hidden="true" className="absolute top-2 bottom-2 left-0 w-px bg-border" />
+        <div aria-hidden="true" className="absolute top-2 bottom-2 left-4 w-px bg-border" />
         <Reveal stagger className="space-y-8 sm:space-y-9">
           {experience.map((item) => (
             <ExperienceCard key={item.company} item={item} />
