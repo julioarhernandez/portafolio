@@ -8,7 +8,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-16">
           <Reveal className="about-visual order-1 lg:order-1" aria-hidden="true">
-            <CodeOrnament />
+            <CodeOrnament showBrowser />
           </Reveal>
 
           <div className="order-2 lg:order-2">

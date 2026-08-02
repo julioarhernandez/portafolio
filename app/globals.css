@@ -189,7 +189,8 @@
   margin: 0 auto;
 }
 
-.about-browser {
+.about-browser,
+.about-envelope {
   position: absolute;
   top: 24px;
   left: 8px;
@@ -264,6 +265,47 @@
   flex-direction: column;
 }
 
+.about-envelope-flap {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 92px;
+  background: color-mix(in srgb, var(--secondary) 62%, var(--card));
+  clip-path: polygon(0 0, 100% 0, 50% 72%);
+}
+
+.about-envelope-line {
+  position: absolute;
+  z-index: 3;
+  top: 24px;
+  width: 142px;
+  height: 1px;
+  background: color-mix(in srgb, var(--primary) 32%, transparent);
+}
+
+.about-envelope-line-left {
+  left: -8px;
+  transform: rotate(34deg);
+  transform-origin: left center;
+}
+
+.about-envelope-line-right {
+  right: -8px;
+  transform: rotate(-34deg);
+  transform-origin: right center;
+}
+
+.about-envelope-paper {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  height: 44px;
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 0.35rem;
+  background: color-mix(in srgb, var(--card) 78%, white);
+}
+
 .about-code-badge {
   position: absolute;
   right: 8px;
@@ -295,17 +337,17 @@
 }
 
 @media (max-width: 639px) {
-  .about-visual {
-    order: 2;
-  }
-
   .about-ornament {
     width: min(100%, 330px);
     height: 104px;
     margin: 0 auto;
   }
+  .about-browser,
+  .about-envelope {
+    display: none;
+  }
 
-  .about-browser {
+  .about-envelope {
     top: 8px;
     left: 4px;
     width: 176px;
@@ -348,6 +390,22 @@
   .about-browser-block-wide {
     margin-top: 0.3rem;
     height: 0.95rem;
+  }
+
+  .about-envelope-flap {
+    height: 52px;
+  }
+
+  .about-envelope-line {
+    top: 14px;
+    width: 112px;
+  }
+
+  .about-envelope-paper {
+    right: 14px;
+    bottom: 12px;
+    left: 14px;
+    height: 22px;
   }
 
   .about-code-badge {
