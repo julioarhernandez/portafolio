@@ -13,7 +13,7 @@ export function ProjectImagePlaceholder({ name }: { name: string }) {
 
   return (
     <div
-      className={`${gradientClass} flex aspect-video items-center justify-center text-4xl font-semibold text-white/90`}
+      className={`${gradientClass} flex aspect-video items-center justify-start px-5 font-display text-5xl font-medium text-primary-foreground/90`}
       aria-hidden="true"
     >
       {name.charAt(0).toUpperCase()}

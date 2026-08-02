@@ -14,9 +14,9 @@ export function SkillsSection() {
   const skills = isExpanded ? [...featuredSkills, ...additionalSkills] : featuredSkills;
 
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+    <section id="skills" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
       <Reveal>
-        <h2 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
+        <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">
           Skills &amp; technology
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
@@ -67,3 +67,4 @@ export function SkillsSection() {
     </section>
   );
 }
+
