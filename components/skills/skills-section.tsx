@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { additionalSkills, featuredSkills } from "@/lib/site-config";
 
+const MAX_VISIBLE_SKILLS = 10;
 const badgeColors = [
   "theme-badge-accent",
   "theme-badge-primary",
@@ -15,7 +16,8 @@ const badgeColors = [
 ];
 
 export function SkillsSection() {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isCoreExpanded, setIsCoreExpanded] = useState(false);
+  const [isAdditionalExpanded, setIsAdditionalExpanded] = useState(false);
 
   return (
     <section id="skills" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
@@ -32,7 +34,7 @@ export function SkillsSection() {
         <Card>
           <CardContent className="p-0">
             <div className="grid md:grid-cols-[minmax(13rem,19rem)_1fr]">
-              <div className="border-b px-6 py-8 sm:px-8 md:border-r md:border-b-0 md:py-14">
+              <div className="border-b px-6 py-8 sm:px-8 md:border-r md:py-14">
                 <p className="text-sm font-medium text-muted-foreground">01</p>
                 <h3
                   id="core-stack-heading"
@@ -43,11 +45,19 @@ export function SkillsSection() {
               </div>
               <div className="border-b px-6 py-8 sm:px-8 md:border-b">
                 <ul
+                  id="core-stack-list"
                   className="flex flex-wrap gap-2"
                   aria-labelledby="core-stack-heading"
                 >
                   {featuredSkills.map((skill, index) => (
-                    <li key={skill}>
+                    <li
+                      key={skill}
+                      className={
+                        !isCoreExpanded && index >= MAX_VISIBLE_SKILLS
+                          ? "hidden"
+                          : undefined
+                      }
+                    >
                       <Badge
                         variant="outline"
                         className={`h-9 border px-3 text-sm ${badgeColors[index % badgeColors.length]}`}
@@ -57,6 +67,17 @@ export function SkillsSection() {
                     </li>
                   ))}
                 </ul>
+                {featuredSkills.length > MAX_VISIBLE_SKILLS && (
+                  <button
+                    type="button"
+                    onClick={() => setIsCoreExpanded((expanded) => !expanded)}
+                    className="mt-7 text-sm font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    aria-expanded={isCoreExpanded}
+                    aria-controls="core-stack-list"
+                  >
+                    {isCoreExpanded ? "Show less" : "Show more"}
+                  </button>
+                )}
               </div>
               <div className="border-b px-6 py-8 sm:px-8 md:border-r md:border-b-0 md:py-14">
                 <p className="text-sm font-medium text-muted-foreground">02</p>
@@ -68,32 +89,42 @@ export function SkillsSection() {
                 </h3>
               </div>
               <div className="px-6 py-8 sm:px-8 md:py-8">
-                <div id="additional-skills-list" hidden={!isExpanded}>
-                  <ul
-                    className="flex flex-wrap gap-2"
-                    aria-labelledby="additional-skills-heading"
-                  >
-                    {additionalSkills.map((skill, index) => (
-                      <li key={skill}>
-                        <Badge
-                          variant="outline"
-                          className={`h-9 border px-3 text-sm ${badgeColors[(index + featuredSkills.length) % badgeColors.length]}`}
-                        >
-                          {skill}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsExpanded((expanded) => !expanded)}
-                  className="mt-7 text-sm font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                  aria-expanded={isExpanded}
-                  aria-controls="additional-skills-list"
+                <ul
+                  id="additional-skills-list"
+                  className="flex flex-wrap gap-2"
+                  aria-labelledby="additional-skills-heading"
                 >
-                  {isExpanded ? "Show less" : "Show more"}
-                </button>
+                  {additionalSkills.map((skill, index) => (
+                    <li
+                      key={skill}
+                      className={
+                        !isAdditionalExpanded && index >= MAX_VISIBLE_SKILLS
+                          ? "hidden"
+                          : undefined
+                      }
+                    >
+                      <Badge
+                        variant="outline"
+                        className={`h-9 border px-3 text-sm ${badgeColors[(index + featuredSkills.length) % badgeColors.length]}`}
+                      >
+                        {skill}
+                      </Badge>
+                    </li>
+                  ))}
+                </ul>
+                {additionalSkills.length > MAX_VISIBLE_SKILLS && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setIsAdditionalExpanded((expanded) => !expanded)
+                    }
+                    className="mt-7 text-sm font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    aria-expanded={isAdditionalExpanded}
+                    aria-controls="additional-skills-list"
+                  >
+                    {isAdditionalExpanded ? "Show less" : "Show more"}
+                  </button>
+                )}
               </div>
             </div>
           </CardContent>
