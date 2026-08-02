@@ -19,19 +19,19 @@ const item: Variants = {
 
 export function HeroSection() {
   return (
-    <section className="relative isolate -mt-14 flex min-h-[100dvh] overflow-hidden bg-[radial-gradient(circle_at_15%_20%,oklch(0.95_0.045_35/.8),transparent_34%),radial-gradient(circle_at_88%_78%,oklch(0.96_0.04_75/.52),transparent_32%)] pt-14">
+    <section className="hero-surface relative isolate -mt-14 flex min-h-[100dvh] overflow-hidden pt-14">
 
       <div className="mx-auto flex w-full max-w-5xl flex-1 items-center px-4 py-20 sm:px-6 sm:py-24">
         <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1fr)_250px]">
           <motion.div initial={false} animate="visible" variants={container} className="max-w-3xl">
-            <motion.p variants={item} className="text-sm font-medium tracking-wide text-orange-700">
+            <motion.p variants={item} className="text-sm font-medium tracking-wide text-primary">
               Hi, I&apos;m {siteConfig.name}
             </motion.p>
             <motion.h1
               variants={item}
               className="mt-6 max-w-3xl font-display text-5xl font-medium leading-[0.95] tracking-tight text-balance sm:text-6xl lg:text-7xl"
             >
-              <span className="bg-linear-to-r from-zinc-950 via-zinc-800 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
                 {siteConfig.title}
               </span>
             </motion.h1>
@@ -73,18 +73,18 @@ export function HeroSection() {
             initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.45, duration: 0.6, ease: "easeOut" }}
-            className="hidden rounded-3xl border border-zinc-200/80 bg-white/65 p-5 shadow-xl shadow-zinc-950/5 backdrop-blur lg:block"
+            className="hidden rounded-3xl border border-border/70 bg-card/70 p-5 shadow-xl shadow-foreground/5 backdrop-blur lg:block"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-700">Currently building</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Currently building</p>
             <p className="mt-4 text-lg font-semibold tracking-tight">Interfaces that feel clear, fast, and human.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["React", "Vue", "Accessibility", "Design systems"].map((label) => (
-                <span key={label} className="rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-700">
+                <span key={label} className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
                   {label}
                 </span>
               ))}
             </div>
-            <div className="mt-7 border-t border-zinc-200 pt-4 text-sm text-muted-foreground">
+            <div className="mt-7 border-t border-border/70 pt-4 text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">20+</span> years shaping the web
             </div>
           </motion.aside>
@@ -104,3 +104,4 @@ export function HeroSection() {
     </section>
   );
 }
+

@@ -51,72 +51,78 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background: #f0e5d8;
+  --foreground: #2f2927;
+  --card: #fffaf5;
+  --card-foreground: #2f2927;
+  --popover: #fffaf5;
+  --popover-foreground: #2f2927;
+  --primary: #c84b31;
+  --primary-foreground: #fffaf5;
+  --secondary: #e5eeee;
+  --secondary-foreground: #243536;
+  --muted: #e8ddd2;
+  --muted-foreground: #6e625a;
+  --accent: #a5c9ca;
+  --accent-foreground: #243536;
+  --destructive: #b23a2b;
+  --border: #d9bf77;
+  --input: #d9bf77;
+  --ring: #c84b31;
+  --chart-1: #c84b31;
+  --chart-2: #a5c9ca;
+  --chart-3: #d9bf77;
+  --chart-4: #6e625a;
+  --chart-5: #2f2927;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #fffaf5;
+  --sidebar-foreground: #2f2927;
+  --sidebar-primary: #c84b31;
+  --sidebar-primary-foreground: #fffaf5;
+  --sidebar-accent: #e5eeee;
+  --sidebar-accent-foreground: #243536;
+  --sidebar-border: #d9bf77;
+  --sidebar-ring: #c84b31;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #241c1b;
+  --foreground: #fffaf5;
+  --card: #322724;
+  --card-foreground: #fffaf5;
+  --popover: #322724;
+  --popover-foreground: #fffaf5;
+  --primary: #e27a61;
+  --primary-foreground: #241c1b;
+  --secondary: #294143;
+  --secondary-foreground: #e5eeee;
+  --muted: #3b302d;
+  --muted-foreground: #cbbdb3;
+  --accent: #78aeb0;
+  --accent-foreground: #172526;
+  --destructive: #ef8b78;
+  --border: #806e4b;
+  --input: #806e4b;
+  --ring: #e27a61;
+  --chart-1: #e27a61;
+  --chart-2: #78aeb0;
+  --chart-3: #d9bf77;
+  --chart-4: #cbbdb3;
+  --chart-5: #fffaf5;
+  --sidebar: #322724;
+  --sidebar-foreground: #fffaf5;
+  --sidebar-primary: #e27a61;
+  --sidebar-primary-foreground: #241c1b;
+  --sidebar-accent: #294143;
+  --sidebar-accent-foreground: #e5eeee;
+  --sidebar-border: #806e4b;
+  --sidebar-ring: #e27a61;
+}
+
+.hero-surface {
+  background:
+    radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 34%),
+    radial-gradient(circle at 88% 78%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 32%);
 }
 
 @layer base {
