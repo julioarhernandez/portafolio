@@ -71,7 +71,7 @@ export default async function BlogPostPage({
           </Badge>
         ))}
       </div>
-      <div className="prose mt-10 max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-a:text-primary prose-a:decoration-primary/40 prose-blockquote:border-primary prose-blockquote:text-muted-foreground prose-pre:bg-muted">
+      <div className="prose mt-10 max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-a:text-primary prose-a:decoration-primary/40 prose-blockquote:border-primary prose-blockquote:text-muted-foreground prose-pre:bg-slate-950 prose-pre:text-slate-100 prose-pre:[&_code]:text-inherit">
         <MDXRemote source={content} options={mdxOptions} />
       </div>
     </article>

@@ -105,14 +105,14 @@
 
 .dark {
   /* Dark-mode migration surface; semantic roles below stay unchanged. */
-  --theme-background: #091e39;
-  --theme-surface: #1d3a5a;
+  --theme-background: #000000;
+  --theme-surface: #0b1e32;
   --theme-foreground: #fffaf4;
   --theme-muted-surface: #244564;
   --theme-muted-foreground: #d8cbbb;
   --theme-primary: #e17b56;
-  --theme-primary-foreground: #132d50;
-  --theme-secondary: #b84d2e;
+  --theme-primary-foreground: #010b18;
+  --theme-secondary: #524747;
   --theme-secondary-foreground: #fffaf4;
   --theme-accent: #d8794f;
   --theme-accent-foreground: #132d50;

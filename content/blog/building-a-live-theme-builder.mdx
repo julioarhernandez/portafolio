@@ -1,0 +1,229 @@
+---
+title: "Building a Live Theme Builder with React and Next.js"
+date: "2026-08-02"
+excerpt: "How I built a persisted, document-wide theme editor that lets the portfolio become its own live design-system preview."
+tags: ["React", "Next.js", "Performance", "CSS"]
+---
+
+A theme editor is easy to prototype and surprisingly easy to make uncomfortable. The first version of this project rendered a separate preview dashboard, but that created a distance between the thing being edited and the thing people actually use.
+
+The better model was simpler: make the portfolio itself the preview.
+
+## The architecture
+
+The Theme Builder has three layers:
+
+- A server-rendered guide at /playground/theme-builder
+- A client-side provider mounted in the root layout
+- A fixed floating widget that appears across routes when activated
+
+The page explains semantic color variables and includes the activation checkbox. The provider owns the state and persistence, while the widget is only responsible for editing.
+
+This keeps the interactive boundary narrow. The App Router page and MDX content can remain server-rendered, while browser-only behavior stays inside the provider and widget.
+
+~~~tsx
+<ThemeProvider>
+  <ThemeBuilderProvider>
+    <Navbar />
+    <main>{children}</main>
+    <Footer />
+  </ThemeBuilderProvider>
+</ThemeProvider>
+~~~
+
+The provider exposes a small typed API:
+
+~~~ts
+type ThemeBuilderContext = {
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
+  palettes: ThemePalettes;
+  updateToken: (mode: ThemeMode, token: ThemeToken, value: string) => void;
+  resetToken: (mode: ThemeMode, token: ThemeToken) => void;
+  reset: () => void;
+};
+~~~
+
+The token model is deliberately constrained. A token is not an arbitrary CSS property; it is a semantic role that every component can understand:
+
+~~~ts
+export const themeTokens = [
+  "background", "surface", "foreground",
+  "muted-surface", "muted-foreground",
+  "primary", "primary-foreground",
+  "secondary", "secondary-foreground",
+  "accent", "accent-foreground",
+  "border", "destructive", "destructive-foreground", "highlight",
+] as const;
+
+type ThemeToken = (typeof themeTokens)[number];
+type ThemeMode = "light" | "dark";
+type ThemePalettes = Record<ThemeMode, Record<ThemeToken, string>>;
+~~~
+
+Keeping the token union and default palette in one module gives the editor, reset actions, CSS export, and documentation the same source of truth. It also makes malformed or outdated local-storage data safe to merge with current defaults.
+
+## Semantic variables instead of component colors
+
+The editor changes semantic roles rather than individual components. The existing CSS maps those roles into the component system:
+
+~~~css
+:root {
+  --theme-background: #fbf7f1;
+  --theme-primary: #b84d2e;
+}
+
+.dark {
+  --theme-background: #000000;
+  --theme-primary: #e17b56;
+}
+~~~
+
+Components consume roles such as background, primary, border, muted, and accent. This means one change can update the entire interface consistently without adding special theme classes to every component.
+
+The token definitions, defaults, labels, and groups live in one shared TypeScript module. That gives the provider, widget, reset actions, and copy-to-CSS feature the same source of truth.
+
+## Applying the active palette
+
+When the builder is enabled, the active light or dark palette is written to document.documentElement as inline custom properties. The existing global CSS variables then resolve through those values.
+
+This has two useful properties:
+
+1. The navbar, footer, page content, and shared UI components all update together.
+2. The editor does not need to render a second fake application just to demonstrate the result.
+
+Selecting Light or Dark in the widget also calls next-themes, so the editor and the site theme stay synchronized in both directions.
+
+The document-level application is intentionally narrow. The provider writes only the active mode and only the semantic variables owned by the builder:
+
+~~~ts
+function applyPalette(palette: Record<ThemeToken, string>) {
+  const root = document.documentElement;
+
+  for (const token of themeTokens) {
+    root.style.setProperty(`--theme-${token}`, palette[token]);
+  }
+}
+
+function clearPalette() {
+  for (const token of themeTokens) {
+    document.documentElement.style.removeProperty(`--theme-${token}`);
+  }
+}
+~~~
+
+The existing CSS then performs the mapping from migration variables to component variables:
+
+~~~css
+:root {
+  --theme-background: #fbf7f1;
+  --background: var(--theme-background);
+  --card: var(--theme-surface);
+  --foreground: var(--theme-foreground);
+}
+~~~
+
+This means the provider does not need to know whether a component uses `bg-background`, `bg-card`, or `text-foreground`. Components keep their normal classes while the variable graph supplies the new values.
+
+## Making color dragging feel stable
+
+Native color inputs can emit a large number of change events while the user drags. Applying React state, all CSS variables, and localStorage on every event makes the interface feel unstable.
+
+The final implementation separates the input path from the commit path:
+
+~~~text
+color input event
+  -> reset a 400ms timer
+  -> wait for a quiet period
+  -> commit only the final color
+  -> update one active CSS variable
+  -> persist the palette after a short delay
+~~~
+
+The color input is uncontrolled, so React does not recreate it during the drag. Refs synchronize the native input when a token is reset or the editing mode changes.
+
+After the debounce completes, the provider updates only the changed variable. A requestAnimationFrame queue coalesces updates that land in the same frame. Local storage has its own debounce so synchronous storage work does not happen for every drag event.
+
+The full palette is only reapplied for meaningful transitions such as hydration, theme switching, enabling or disabling the builder, and Reset. The important distinction is that the input event does not immediately call the expensive commit path:
+
+~~~tsx
+const timers = useRef(new Map<ThemeToken, ReturnType<typeof setTimeout>>());
+const pending = useRef(new Map<ThemeToken, string>());
+
+function handleColorChange(token: ThemeToken, value: string) {
+  pending.current.set(token, value);
+
+  const previous = timers.current.get(token);
+  if (previous) clearTimeout(previous);
+
+  const timer = setTimeout(() => {
+    const nextValue = pending.current.get(token);
+    if (!nextValue) return;
+
+    updateToken(mode, token, nextValue);
+    pending.current.delete(token);
+    timers.current.delete(token);
+  }, 400);
+
+  timers.current.set(token, timer);
+}
+~~~
+
+This is a trailing debounce: every drag event replaces the timer, and only the last value is committed after 400ms of silence. A per-token map prevents one color input from cancelling another. The provider then schedules the active CSS property in `requestAnimationFrame`, while local-storage persistence uses a separate short delay. Rendering, style mutation, and storage I/O therefore do not all happen for every native color event.
+
+The color input itself is uncontrolled:
+
+~~~tsx
+<input
+  ref={(input) => {
+    if (input) colorInputs.current.set(token, input);
+  }}
+  type="color"
+  defaultValue={palettes[mode][token]}
+  onChange={(event) => handleColorChange(token, event.target.value)}
+/>
+~~~
+
+Using `defaultValue` and a ref avoids recreating the native picker while its operating system drag interaction is in progress. When the mode changes or a token is reset, the ref is updated directly so the picker remains stable instead of closing because React remounted it.
+
+## Persistence and recovery
+
+The editor stores the enabled state and both palettes under a versioned local-storage key:
+
+~~~ts
+{
+  enabled: boolean;
+  palettes: {
+    light: Record<ThemeToken, string>;
+    dark: Record<ThemeToken, string>;
+  };
+}
+~~~
+
+Hydration merges saved values with the current defaults. That is important because the token list can evolve: a missing token gets a safe default instead of producing an incomplete theme.
+
+Disabling the widget removes the document-level overrides and clears the saved payload. Reset restores all original values, while each token also has its own reset action.
+
+## Small styling details that matter
+
+The widget is a fixed, high-z-index launcher that expands into a scrollable card. The card uses zero outer vertical padding, while the sticky header and content own their spacing. This prevents the first token row from showing through above the sticky header while the panel scrolls.
+
+Each token row shows the swatch, semantic name, CSS variable name, current hex value, a modified indicator, and a per-token reset action. The Copy button exports complete light and dark CSS blocks, including values that were never changed.
+
+These details are small, but they make the tool useful as a real design-system utility rather than just a demo.
+
+One styling rule is intentionally independent from the editable palette. Blog code blocks use a fixed high-contrast surface instead of `text-foreground`:
+
+~~~tsx
+<div className="prose-pre:bg-slate-950 prose-pre:text-slate-100 prose-pre:[&_code]:text-inherit">
+  <MDXRemote source={content} options={mdxOptions} />
+</div>
+~~~
+
+The article can explain a theme value without disappearing when a reader experiments with a dark background and dark foreground at the same time. The application UI remains editable; documentation code remains readable.
+
+## What I learned
+
+The main lesson was to keep the source of truth close to the real UI. A separate preview can demonstrate a concept, but a document-level semantic token editor demonstrates whether the architecture actually works.
+
+React handles the state and interaction model. Next.js provides the server/client boundary. CSS custom properties provide the low-level theme transport. requestAnimationFrame and debouncing keep the interaction responsive. Together, those pieces make the portfolio both the product and the test surface for its own design system.

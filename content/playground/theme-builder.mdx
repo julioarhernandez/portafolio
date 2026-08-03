@@ -1,0 +1,23 @@
+## Semantic theme variables
+
+The portfolio components do not choose colors directly. They use semantic roles such as `--theme-background`, `--theme-surface`, `--theme-primary`, and `--theme-accent`. The role stays the same while its value can change between light and dark modes.
+
+```css
+:root {
+  --theme-background: #fbf7f1;
+  --theme-primary: #b84d2e;
+}
+
+.dark {
+  --theme-background: #000000;
+  --theme-primary: #e17b56;
+}
+```
+
+## How the floating builder works
+
+The editor keeps independent light and dark palettes. When it is active, the current mode's values are applied to the document root, so the navbar, footer, and current page all update at once. The controls do not render a second preview application; the portfolio itself is the preview.
+
+## Browser persistence
+
+The enabled state and both palettes are stored in local storage under a versioned key. Refreshing the page or navigating to another route keeps the current experiment available. Disabling the widget clears the saved override and restores the defaults from the site's global theme variables.
