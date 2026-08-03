@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
@@ -76,7 +76,7 @@ export function HeroSection() {
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border/60 bg-secondary/30 shadow-2xl shadow-foreground/10">
             <Image
-              src="/hero-image.png"
+              src="/hero-image-dev.webp"
               alt="Julio Rodriguez, software engineer"
               fill
               priority
