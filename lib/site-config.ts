@@ -1,4 +1,4 @@
-import type { ExperienceItem, NavItem, Project, SocialLink } from "@/types";
+import type { EducationItem, ExperienceItem, NavItem, Project, SocialLink } from "@/types";
 
 export const siteConfig = {
   name: "Julio Rodriguez",
@@ -20,6 +20,7 @@ export const siteConfig = {
 export const navItems: NavItem[] = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
+  { label: "Education", href: "/#education" },
   { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "/#projects" },
   { label: "Playground", href: "/playground" },
@@ -143,6 +144,21 @@ export const experience: ExperienceItem[] = [
     achievements: [
       "Maintained a two-decade freelance practice alongside full-time roles, staying hands-on with new frameworks and tooling",
     ],
+  },
+];
+
+export const education: EducationItem[] = [
+  {
+    degree: "Postgraduate Courses in Computer Networks and Network Administration",
+    institution: "Central University of Las Villas",
+    location: "Santa Clara, Villa Clara, Cuba",
+    period: "2005 - 2007",
+  },
+  {
+    degree: "Bachelor of Science in Telecommunications and Electronic Engineering",
+    institution: "Central University of Las Villas",
+    location: "Santa Clara, Villa Clara, Cuba",
+    period: "2001 - 2006",
   },
 ];
 

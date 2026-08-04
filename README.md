@@ -43,13 +43,7 @@ Engineering Playground of interactive demos, and an MDX blog.
    npx prisma migrate dev
    ```
 
-5. Generate the placeholder resume (already committed, but regenerate any time):
-
-   ```bash
-   node scripts/generate-placeholder-resume.mjs
-   ```
-
-6. Run the dev server:
+5. Run the dev server:
 
    ```bash
    npm run dev

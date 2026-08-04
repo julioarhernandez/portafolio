@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenText, BriefcaseBusiness, Code2, ExternalLink, FolderKanban, FlaskConical, Mail, Menu, UserRound, Wrench, X } from "lucide-react";
+import { BookOpenText, BriefcaseBusiness, Code2, ExternalLink, FolderKanban, FlaskConical, GraduationCap, Mail, Menu, UserRound, Wrench, X } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import { Collapse } from "@/components/motion/collapse";
 import { Button } from "@/components/ui/button";
 import { navItems, siteConfig, socialLinks } from "@/lib/site-config";
 
-const navIcons = [UserRound, BriefcaseBusiness, Wrench, FolderKanban, FlaskConical, BookOpenText] as const
+const navIcons = [UserRound, BriefcaseBusiness, GraduationCap, Wrench, FolderKanban, FlaskConical, BookOpenText] as const
 const socialIcons = { github: Code2, linkedin: BriefcaseBusiness, mail: Mail, twitter: ExternalLink } as const;
 
 export function Navbar() {
