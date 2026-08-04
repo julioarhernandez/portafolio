@@ -14,7 +14,7 @@ export const siteConfig = {
   ],
   email: "julior@duck.com",
   location: "Broward, FL",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/JULIO-RODRIGUEZ-RESUME.pdf",
 } as const;
 
 export const navItems: NavItem[] = [

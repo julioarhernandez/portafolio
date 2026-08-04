@@ -7,8 +7,8 @@ Engineering Playground of interactive demos, and an MDX blog.
 ## Prerequisites
 
 - Node.js 20+
-- A [Neon](https://neon.tech) account (free tier is enough)
-- A [Resend](https://resend.com) account (free tier is enough)
+- A [Neon](https://neon.tech) account 
+- A [Resend](https://resend.com) account 
 
 ## Setup
 
@@ -18,8 +18,7 @@ Engineering Playground of interactive demos, and an MDX blog.
    npm install
    ```
 
-2. Connect a Neon database. This project already has the Neon CLI wired up — from the project
-   root:
+2. Connect a Neon database. This project already has the Neon CLI wired up:
 
    ```bash
    npx neon env pull
@@ -51,14 +50,13 @@ Engineering Playground of interactive demos, and an MDX blog.
 
 ## Editing content
 
-All placeholder content lives in a small number of files — replace it with your own before
-deploying:
+All content lives in a small number of files
 
 - `lib/site-config.ts` — name, title, tagline, about copy, experience, skills, projects, social
   links
 - `content/blog/*.mdx` — blog posts
 - `content/playground/*.mdx` — Engineering Playground write-ups
-- `public/resume.pdf` — your real resume
+- `public/JULIO-RODRIGUEZ-RESUME.pdf`
 
 ## Scripts
 
