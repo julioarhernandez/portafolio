@@ -24,12 +24,15 @@ export type SkillCategory = {
   skills: string[];
 };
 
+export type ProjectIcon = "calculator" | "component" | "trophy" | "layout-dashboard";
+
 export type Project = {
   slug: string;
   name: string;
   description: string;
   technologies: string[];
   keyDecisions: string[];
+  icon: ProjectIcon;
   repoUrl?: string;
   demoUrl?: string;
 };

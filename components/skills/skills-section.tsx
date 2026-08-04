@@ -1,9 +1,9 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-import { Collapse } from "@/components/motion/collapse";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -61,21 +61,26 @@ export function SkillsSection() {
                       </Badge>
                     </li>
                   ))}
-                </ul>
-                <Collapse open={isCoreExpanded}>
-                  <ul className="flex flex-wrap gap-2 pt-2" aria-label="More core stack skills">
-                    {featuredSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
-                      <li key={skill}>
-                        <Badge
-                          variant="outline"
-                          className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS) % badgeColors.length]}
+                  <AnimatePresence initial={false}>
+                    {isCoreExpanded &&
+                      featuredSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
+                        <motion.li
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.15 }}
                         >
-                          {skill}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                </Collapse>
+                          <Badge
+                            variant="outline"
+                            className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS) % badgeColors.length]}
+                          >
+                            {skill}
+                          </Badge>
+                        </motion.li>
+                      ))}
+                  </AnimatePresence>
+                </ul>
                 {featuredSkills.length > MAX_VISIBLE_SKILLS && (
                   <button
                     type="button"
@@ -114,21 +119,26 @@ export function SkillsSection() {
                       </Badge>
                     </li>
                   ))}
-                </ul>
-                <Collapse open={isAdditionalExpanded}>
-                  <ul className="flex flex-wrap gap-2 pt-2" aria-label="More additional skills">
-                    {additionalSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
-                      <li key={skill}>
-                        <Badge
-                          variant="outline"
-                          className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS + featuredSkills.length) % badgeColors.length]}
+                  <AnimatePresence initial={false}>
+                    {isAdditionalExpanded &&
+                      additionalSkills.slice(MAX_VISIBLE_SKILLS).map((skill, index) => (
+                        <motion.li
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.15 }}
                         >
-                          {skill}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                </Collapse>
+                          <Badge
+                            variant="outline"
+                            className={"h-9 border px-3 text-sm " + badgeColors[(index + MAX_VISIBLE_SKILLS + featuredSkills.length) % badgeColors.length]}
+                          >
+                            {skill}
+                          </Badge>
+                        </motion.li>
+                      ))}
+                  </AnimatePresence>
+                </ul>
                 {additionalSkills.length > MAX_VISIBLE_SKILLS && (
                   <button
                     type="button"

@@ -8,6 +8,18 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronDown } from "lucide-react";
 import type { ExperienceItem } from "@/types";
 
+function renderWithBold(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={index} className="font-semibold text-foreground">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
 export function ExperienceCard({ item }: { item: ExperienceItem }) {
   const [open, setOpen] = useState(false);
   return (
@@ -69,7 +81,7 @@ export function ExperienceCard({ item }: { item: ExperienceItem }) {
                 </h4>
                 <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                   {item.responsibilities.map((responsibility) => (
-                    <li key={responsibility}>{responsibility}</li>
+                    <li key={responsibility}>{renderWithBold(responsibility)}</li>
                   ))}
                 </ul>
               </div>

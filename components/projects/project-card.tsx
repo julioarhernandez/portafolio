@@ -17,7 +17,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <RevealItem>
       <Card className="h-full py-0">
-        <ProjectImagePlaceholder name={project.name} />
+        <ProjectImagePlaceholder name={project.name} icon={project.icon} />
         <CardHeader className="mt-4">
           <CardTitle className="text-base">{project.name}</CardTitle>
         </CardHeader>
