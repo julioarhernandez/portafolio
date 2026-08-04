@@ -6,10 +6,12 @@ export const siteConfig = {
   tagline:
     "I build scalable, accessible, and high-performance web applications, combining strong engineering foundations with thoughtful user experiences.",
   about: [
-    "I've been building web applications since 2006, from the table-based layouts of the early web to large-scale production systems. Since 2016, I've worked in the United States delivering booking, marketing, and customer-facing applications for airlines, cruise lines, and consumer brands.",
-    "I specialize in translating high-fidelity design into accessible, pixel-perfect, reusable components — applying Atomic Design principles and building style guides that keep design and engineering in sync across large product teams.",
-    "Beyond components, I own the details that make a site fast and discoverable: SEO, Core Web Vitals, and Progressive Web App features like service workers and push notifications, backed by tools like Lighthouse, YellowLab, and WebPageTest.",
-    "I'm an active mentor and lifelong learner — always exploring new frameworks (currently Svelte, RedwoodJS, GraphQL) and sharing what I learn with the teams I work on.",
+    "I feel incredibly fortunate to have experienced and participated in one of the most exciting periods in software history, watching the web evolve from its early foundations into the powerful, intelligent platforms we build today.",
+    "My journey started during the transition from static websites to dynamic web applications, working with technologies like PHP, ASP.NET, MySQL, HTML, CSS2, and JavaScript libraries such as jQuery and MooTools. Those early years gave me a deep understanding of how the web works from the ground up, from databases and server-side development to browser compatibility, user experience, and performance.",
+    "Over the years, I've had the opportunity to grow alongside the industry as the web transformed through AJAX, modern JavaScript, Node.js, React, component-based architectures, design systems, APIs, cloud platforms, and now AI-powered experiences. Each generation introduced new possibilities, and I've always enjoyed embracing those changes with curiosity, excitement, and a genuine passion for learning.",
+    "Today, I specialize in turning high-fidelity designs into accessible, pixel-perfect, and reusable experiences. I enjoy bridging the gap between design and engineering by applying Atomic Design principles, building scalable component systems, and creating style guides that help teams stay aligned as products grow.",
+    "Beyond the interface, I care deeply about the details that make applications successful, including performance, SEO, Core Web Vitals, Progressive Web App capabilities, and creating fast, reliable experiences for users. Throughout my career, I've worked on booking, marketing, and customer-facing applications for airlines, cruise companies, and consumer brands, helping deliver digital experiences used in real-world environments.",
+    "I'm an active mentor and lifelong learner, always exploring new technologies and sharing what I learn with the teams I work with. From the early days of the web to today's AI-driven era, it has been an honor to witness this evolution firsthand and be part of a community that continues to redefine what is possible with software.",
   ],
   email: "julior@duck.com",
   location: "Broward, FL",
