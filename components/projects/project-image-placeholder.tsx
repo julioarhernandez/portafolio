@@ -2,11 +2,12 @@ import { Calculator, LayoutDashboard, Component, Trophy } from "lucide-react";
 
 import type { ProjectIcon } from "@/types";
 
-function hashIndex(input: string) {
-  let hash = 0;
-  for (const char of input) hash = (hash * 31 + char.charCodeAt(0)) % 3;
-  return hash;
-}
+const gradientClasses = [
+  "project-gradient-primary-accent",
+  "project-gradient-accent-border",
+  "project-gradient-border-primary",
+  "project-gradient-teal",
+];
 
 const iconMap: Record<ProjectIcon, typeof Calculator> = {
   calculator: Calculator,
@@ -15,12 +16,14 @@ const iconMap: Record<ProjectIcon, typeof Calculator> = {
   "layout-dashboard": LayoutDashboard,
 };
 
-export function ProjectImagePlaceholder({ name, icon }: { name: string; icon: ProjectIcon }) {
-  const gradientClass = [
-    "project-gradient-primary-accent",
-    "project-gradient-accent-border",
-    "project-gradient-border-primary",
-  ][hashIndex(name)];
+export function ProjectImagePlaceholder({
+  icon,
+  index,
+}: {
+  icon: ProjectIcon;
+  index: number;
+}) {
+  const gradientClass = gradientClasses[index % gradientClasses.length];
   const Icon = iconMap[icon];
 
   return (

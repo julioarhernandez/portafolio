@@ -206,6 +206,7 @@ export const projects: Project[] = [
     ],
     icon: "calculator",
     repoUrl: "https://github.com/julioarhernandez/mortgage",
+    demoUrl: "https://mortgage.julioarhernandez.workers.dev/",
   },
   {
     slug: "howl-component-library",

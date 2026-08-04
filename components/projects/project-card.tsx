@@ -12,12 +12,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Project } from "@/types";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [open, setOpen] = useState(false);
   return (
     <RevealItem>
       <Card className="h-full py-0">
-        <ProjectImagePlaceholder name={project.name} icon={project.icon} />
+        <ProjectImagePlaceholder icon={project.icon} index={index} />
         <CardHeader className="mt-4">
           <CardTitle className="text-base">{project.name}</CardTitle>
         </CardHeader>

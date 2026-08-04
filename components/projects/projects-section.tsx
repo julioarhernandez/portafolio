@@ -9,8 +9,8 @@ export function ProjectsSection() {
         <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">Featured Projects</h2>
       </Reveal>
       <Reveal stagger className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+        {projects.map((project, index) => (
+          <ProjectCard key={project.slug} project={project} index={index} />
         ))}
       </Reveal>
     </section>

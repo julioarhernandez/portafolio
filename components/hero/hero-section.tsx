@@ -87,7 +87,7 @@ export function HeroSection() {
 
           <aside className="absolute -bottom-8 right-4 z-10 w-[calc(100%-2rem)] max-w-xs rounded-2xl border border-border/70 bg-card/95 p-5 shadow-xl shadow-foreground/10 backdrop-blur sm:bottom-6 sm:right-[-1.5rem]">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Currently building</p>
-            <p className="mt-4 text-lg font-semibold tracking-tight">Interfaces that feel clear, fast, and human.</p>
+            <p className="mt-4 text-lg font-semibold tracking-tight">Interfaces that feel clear, fast and human.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["React", "Vue", "Accessibility", "Design systems"].map((label) => (
                 <span key={label} className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">

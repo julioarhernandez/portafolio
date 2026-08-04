@@ -155,15 +155,35 @@
 }
 
 .project-gradient-primary-accent {
-  background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+  background: linear-gradient(
+    135deg,
+    oklch(from var(--theme-primary) calc(l + 0.14) c h),
+    oklch(from var(--theme-primary) calc(l - 0.14) c h)
+  );
 }
 
 .project-gradient-accent-border {
-  background: linear-gradient(135deg, var(--theme-accent), var(--theme-border));
+  background: linear-gradient(
+    135deg,
+    oklch(from var(--theme-accent) calc(l + 0.14) c h),
+    oklch(from var(--theme-accent) calc(l - 0.14) c h)
+  );
 }
 
 .project-gradient-border-primary {
-  background: linear-gradient(135deg, var(--theme-border), var(--theme-primary));
+  background: linear-gradient(
+    135deg,
+    oklch(from color-mix(in oklab, var(--theme-primary), blue 45%) calc(l + 0.14) c h),
+    oklch(from color-mix(in oklab, var(--theme-primary), blue 45%) calc(l - 0.14) c h)
+  );
+}
+
+.project-gradient-teal {
+  background: linear-gradient(
+    135deg,
+    oklch(from color-mix(in oklab, var(--theme-accent), teal 55%) calc(l + 0.14) c h),
+    oklch(from color-mix(in oklab, var(--theme-accent), teal 55%) calc(l - 0.14) c h)
+  );
 }
 
 @layer components {
