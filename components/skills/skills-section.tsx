@@ -22,7 +22,7 @@ export function SkillsSection() {
   const [isAdditionalExpanded, setIsAdditionalExpanded] = useState(false);
 
   return (
-    <section id="skills" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <section id="skills" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-20 sm:px-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <Reveal>
         <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">
           Skills &amp; technology

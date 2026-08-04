@@ -4,7 +4,7 @@ import { projects } from "@/lib/site-config";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <section id="projects" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-20 sm:px-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <Reveal>
         <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">Featured Projects</h2>
       </Reveal>

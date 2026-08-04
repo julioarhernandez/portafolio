@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { ThemeBuilderProvider } from "@/components/layout/theme-builder-provider";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { MotionConfigProvider } from "@/components/motion/motion-config-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/lib/site-config";
 
@@ -27,7 +28,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <body className="flex min-h-full flex-col">
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <ThemeBuilderProvider>
-          <Navbar /><main className="flex-1">{children}</main><Footer /><Toaster />
+          <MotionConfigProvider>
+            <a
+              href="#main-content"
+              className="bg-background text-foreground focus-visible:ring-ring sr-only z-[60] rounded-md px-4 py-2 focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:ring-2 focus-visible:outline-none"
+            >
+              Skip to content
+            </a>
+            <Navbar /><main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">{children}</main><Footer /><Toaster />
+          </MotionConfigProvider>
         </ThemeBuilderProvider>
       </ThemeProvider>
     </body>

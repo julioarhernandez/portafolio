@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function AboutSection() {
   return (
-    <section id="about" className="border-b border-border/70 bg-secondary/35">
+    <section id="about" tabIndex={-1} className="border-b border-border/70 bg-secondary/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-16">
           <Reveal className="about-visual order-1 lg:order-1" aria-hidden="true">

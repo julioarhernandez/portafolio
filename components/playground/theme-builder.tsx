@@ -66,7 +66,7 @@ export function ThemeBuilderWidget() {
     {open && <Card className="mb-3 w-[min( calc(100vw - 2rem), 360px)] max-h-[min(78vh,680px)] overflow-y-auto py-0 shadow-2xl">
       <CardHeader className="sticky top-0 z-10 border-b bg-card py-4 shadow-sm">
         <div className="flex items-start justify-between gap-3"><div><CardTitle className="flex items-center gap-2"><Palette className="size-4 text-primary"/> Theme Builder</CardTitle><p className="mt-1 text-xs text-muted-foreground">Updates apply after {COLOR_DEBOUNCE_MS}ms of quiet.</p></div><Button variant="ghost" size="icon" aria-label="Close theme builder" onClick={()=>setOpen(false)}><X/></Button></div>
-        <div className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">{(["light","dark"] as const).map((m)=><button key={m} type="button" className={`rounded-md px-2 py-1.5 text-xs capitalize ${mode===m?"bg-card text-foreground shadow-sm":"text-muted-foreground"}`} onClick={()=>{setMode(m);setTheme(m);}}>{m}</button>)}</div>
+        <div className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">{(["light","dark"] as const).map((m)=><button key={m} type="button" aria-pressed={mode===m} className={`rounded-md px-2 py-1.5 text-xs capitalize ${mode===m?"bg-card text-foreground shadow-sm":"text-muted-foreground"}`} onClick={()=>{setMode(m);setTheme(m);}}>{m}</button>)}</div>
       </CardHeader>
       <CardContent className="space-y-5 pt-4 pb-4">
         {themeTokenGroups.map((group)=><div key={group.label}><p className="mb-2 text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">{group.label}</p><div className="space-y-2">
