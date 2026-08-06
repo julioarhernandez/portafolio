@@ -36,7 +36,7 @@ export const socialLinks: SocialLink[] = [
 export const experience: ExperienceItem[] = [
   {
     company: "Norwegian Cruise Line Holdings (NCLH)",
-    role: "Senior UI/UX Developer",
+    role: "Senior Developer",
     period: "Jul 2018 - Present",
     summary:
       "Lead front-end development for NCLH's booking and marketing platforms, translating design-system mockups into production Vue.js components at scale.",
