@@ -261,6 +261,6 @@ export const projects: Project[] = [
       "Used Route Handlers (not Server Actions) for the CRUD demo so the client → API → DB flow stays visible",
     ],
     icon: "layout-dashboard",
-    repoUrl: "https://github.com/julioarhernandez/portfolio",
+    repoUrl: "https://github.com/julioarhernandez/portafolio",
   },
 ];
