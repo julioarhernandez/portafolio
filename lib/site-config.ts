@@ -6,12 +6,13 @@ export const siteConfig = {
   tagline:
     "I build scalable, accessible, and high-performance web applications, combining strong engineering foundations with thoughtful user experiences.",
   about: [
-    "I feel incredibly fortunate to have grown alongside the web and experienced one of the most exciting periods in software history, from the early days of static websites to today's intelligent, AI-powered platforms.",
-    "I began my career working with PHP, ASP.NET, MySQL, HTML, CSS, jQuery, and MooTools. Those early years gave me a strong understanding of how the web works from the ground up, including databases, server-side development, browser compatibility, user experience, and performance.",
-    "As the industry evolved through AJAX, modern JavaScript, Node.js, React, APIs, cloud platforms, component-based architectures, and design systems, I evolved with it. I've always approached new technologies with curiosity and a genuine excitement for learning.",
-    "I care deeply about the details users may not always see but definitely feel: performance, SEO, Core Web Vitals, Progressive Web Apps, accessibility, and reliability. Throughout my career, I've helped build booking, marketing, and customer-facing applications for airlines, cruise companies, and consumer brands.",
-    "Having witnessed the web evolve from its earliest foundations into the AI-driven era has been an incredible journey, and I'm still just as excited about what comes next.",
-  ],
+  "I'm a Software Engineer focused on building reliable, scalable, and user-focused software for the web. My work today spans modern JavaScript, TypeScript, React, Vue.js, APIs, component architectures, and design systems.",
+  "I enjoy working on the engineering problems behind great user experiences: application architecture, reusable components, performance, accessibility, maintainability, and the details that make software feel fast and intuitive. I'm comfortable across the full development lifecycle, from requirements and technical design to implementation, testing, optimization, and production delivery.",
+  "Throughout my career, I've helped build booking, marketing, and customer-facing applications for airlines, cruise companies, and consumer brands, working closely with design, product, and engineering teams to turn ideas into reliable software.",
+  "I've been building for the web since its earlier days, starting with technologies like PHP, ASP.NET, MySQL, HTML, CSS, jQuery, and MooTools. Those early years gave me a strong understanding of how the web works from the ground up and a foundation that continues to influence how I approach software today.",
+  "I've had the opportunity to experience the web evolve from static pages to dynamic applications, cloud platforms, component-driven systems, and now AI-powered products. I'm still curious about what's next and genuinely excited about where software is heading."
+],
+
   email: "julior@duck.com",
   location: "Broward, FL",
   resumeUrl: "/JULIO-RODRIGUEZ-RESUME.pdf",
