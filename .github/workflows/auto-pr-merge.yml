@@ -1,0 +1,38 @@
+name: Auto PR & Merge
+
+on:
+  push:
+    branches-ignore: [master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-and-automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create PR if one doesn't exist
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          existing=$(gh pr list --head "${{ github.ref_name }}" --base master --json number --jq '.[0].number')
+          if [ -z "$existing" ]; then
+            gh pr create \
+              --base master \
+              --head "${{ github.ref_name }}" \
+              --title "${{ github.ref_name }}" \
+              --body "Auto-created from push to \`${{ github.ref_name }}\`."
+            number=$(gh pr list --head "${{ github.ref_name }}" --base master --json number --jq '.[0].number')
+          else
+            number=$existing
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge "${{ steps.pr.outputs.number }}" --squash --auto
