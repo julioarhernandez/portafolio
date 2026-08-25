@@ -21,13 +21,12 @@ export function EducationSection() {
         <Reveal stagger className="space-y-6">
           {education.map((item) => (
             <RevealItem key={item.degree}>
-              <article className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <div>
-                  <h3 className="text-base font-semibold leading-tight sm:text-lg">{item.degree}</h3>
-                  <p className="mt-1 text-sm font-medium text-primary">{item.institution}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.location}</p>
-                </div>
-                <p className="text-sm font-medium text-muted-foreground sm:shrink-0">{item.period}</p>
+              <article className="flex flex-col gap-1">
+                <h3 className="text-base font-semibold leading-tight sm:text-lg">{item.degree}</h3>
+                <p className="text-sm font-medium text-primary">{item.institution}</p>
+                <p className="text-sm text-muted-foreground">
+                  {item.location} &middot; {item.period}
+                </p>
               </article>
             </RevealItem>
           ))}
