@@ -35,6 +35,27 @@ export const aboutStats = [
   { icon: "globe", value: "20+", label: "Technologies worked with" },
 ] as const;
 
+export const capabilities = [
+  {
+    icon: "lightbulb",
+    title: "Product thinking",
+    description: "I align technical solutions with user needs and business goals to create impact.",
+    items: ["User research", "Roadmapping", "Prioritization", "Product strategy"],
+  },
+  {
+    icon: "component",
+    title: "Interface systems",
+    description: "I design and build accessible, consistent interfaces that scale.",
+    items: ["Design systems", "Component libraries", "Prototyping", "Accessibility"],
+  },
+  {
+    icon: "code",
+    title: "Engineering craft",
+    description: "I write clean, tested code and ship performant, reliable applications.",
+    items: ["Clean code", "Testing", "Performance", "DevOps mindset"],
+  },
+] as const;
+
 export const heroStats = [
   { icon: "lightbulb", value: "20+", label: "Years experience" },
   { icon: "target", value: "25+", label: "Projects shipped" },

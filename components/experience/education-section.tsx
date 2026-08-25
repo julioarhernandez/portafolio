@@ -10,7 +10,7 @@ export function EducationSection() {
     >
       <Reveal>
         <div className="mb-10">
-          <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">
+          <h2 className="section-heading font-heading text-xl font-semibold uppercase tracking-wide text-primary sm:text-2xl">
             Education
           </h2>
           <span aria-hidden="true" className="mt-3 block h-1 w-10 bg-primary" />

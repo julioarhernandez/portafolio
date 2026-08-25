@@ -6,7 +6,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-20 sm:px-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <Reveal>
-        <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">Featured Projects</h2>
+        <h2 className="section-heading font-heading text-xl font-semibold uppercase tracking-wide text-primary sm:text-2xl">Featured Projects</h2>
       </Reveal>
       <Reveal stagger className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {projects.map((project, index) => (

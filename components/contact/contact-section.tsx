@@ -9,7 +9,7 @@ export function ContactSection() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-16">
         <div className="order-2 lg:order-1">
           <Reveal>
-            <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">Get in Touch</h2>
+            <h2 className="section-heading font-heading text-xl font-semibold uppercase tracking-wide text-primary sm:text-2xl">Get in Touch</h2>
             <p className="mt-3 max-w-lg text-muted-foreground">
               Have a role, project, or question in mind? Send a message and I&apos;ll get back to you
               — or reach me directly at{" "}

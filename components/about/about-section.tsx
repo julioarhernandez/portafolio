@@ -35,7 +35,12 @@ export function AboutSection() {
       />
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">About Me</p>
+          <div className="mb-2">
+            <h2 className="section-heading font-heading text-xl font-semibold uppercase tracking-wide text-primary sm:text-2xl">
+              About Me
+            </h2>
+            <span aria-hidden="true" className="mt-3 block h-1 w-10 bg-primary" />
+          </div>
         </Reveal>
 
         <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start lg:gap-16">
