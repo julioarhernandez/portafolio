@@ -19,7 +19,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   return (
     <RevealItem>
       <div
-        className={`${surfaceClass} flex h-full flex-col gap-6 rounded-2xl p-6 ring-1 ring-foreground/10 sm:flex-row sm:items-center`}
+        className={`${surfaceClass} gradient-border flex h-full flex-col gap-6 rounded-2xl p-6 ring-1 ring-foreground/10 sm:flex-row sm:items-center`}
       >
         <div className="flex flex-1 flex-col">
           <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">

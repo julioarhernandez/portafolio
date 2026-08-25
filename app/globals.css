@@ -225,6 +225,59 @@
   }
 }
 
+@property --gradient-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--gradient-border-angle),
+    var(--primary),
+    color-mix(in oklch, var(--primary) 15%, transparent) 30%,
+    color-mix(in oklch, var(--primary) 15%, transparent) 70%,
+    var(--primary)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.gradient-border:hover::before,
+.gradient-border:focus-visible::before {
+  opacity: 1;
+  animation: gradient-border-spin 2.5s linear infinite;
+}
+
+@keyframes gradient-border-spin {
+  to {
+    --gradient-border-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-border:hover::before,
+  .gradient-border:focus-visible::before {
+    animation: none;
+  }
+}
+
 
 .about-ornament {
   position: relative;
