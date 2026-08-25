@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { contactSchema } from "@/lib/validations/contact";
-import { resend } from "@/lib/resend";
+import { getResend } from "@/lib/resend";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: "Portfolio <contact@juliorodriguez.dev>",
       to: process.env.CONTACT_EMAIL_TO ?? "",
       replyTo: email,

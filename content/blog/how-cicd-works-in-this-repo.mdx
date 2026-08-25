@@ -1,0 +1,177 @@
+---
+title: "How CI/CD Is Set Up in This Repo"
+date: "2026-08-24"
+excerpt: "A walkthrough of the two GitHub Actions workflows that check, merge, and ship every change to this site — and the reasoning behind each step."
+tags: ["CI/CD", "GitHub Actions", "DevOps"]
+---
+
+I get asked how this site deploys, so here's the full picture: two small GitHub Actions workflows that check every change, then open and merge the pull request automatically. No manual merge button, no separate deploy step to remember.
+
+## The two workflows
+
+Everything lives in `.github/workflows/`:
+
+- **`ci.yml`** — runs the actual checks: lint, typecheck, build.
+- **`auto-pr-merge.yml`** — opens a pull request for the branch and turns on auto-merge.
+
+They run independently, triggered by the same `push` event, and only come together at the very end when GitHub decides whether the PR is allowed to merge.
+
+## Workflow 1: CI checks
+
+```yaml
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches-ignore: [master]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
+```
+
+### The trigger
+
+```yaml
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches-ignore: [master]
+```
+
+This looks a little unusual, and it's worth spelling out because it's doing double duty:
+
+- `push: branches-ignore: [master]` — runs CI on every push to every branch **except** `master`. In practice that means every feature branch gets checked as soon as you push to it, before a PR even exists.
+- `pull_request: branches: [master]` — also runs CI whenever a pull request targets `master`. This is the check GitHub's branch protection actually looks at before allowing a merge.
+
+Having both means you get fast feedback the moment you push, and a required status check on the PR itself, without running the job twice for the same commit on `master` (since `master` is excluded from the push trigger).
+
+### The steps
+
+1. **`actions/checkout@v4`** — clones the repo into the runner.
+2. **`actions/setup-node@v4`** with `node-version: 20` and `cache: npm` — installs Node 20 and caches `~/.npm` keyed on the lockfile, so `npm ci` is fast on repeat runs.
+3. **`npm ci`** — a clean install straight from `package-lock.json`. Unlike `npm install`, it won't silently update the lockfile, which is exactly what you want in CI.
+4. **`npm run lint`** — ESLint.
+5. **`npm run typecheck`** — `tsc --noEmit`, catching type errors that lint won't.
+6. **`npm run build`** — a full Next.js production build. This is the most valuable check of the three, because it exercises things lint and typecheck can't: server components, route generation, and MDX compilation all have to actually succeed.
+
+That last step needs real environment variables. The build touches the Prisma client and Neon connection setup (see `lib/prisma.ts`), so `DATABASE_URL` and `DATABASE_URL_UNPOOLED` are pulled from **repository secrets** and injected as env vars for that one step only — they're not available to any other job or to pull requests from forks, which is the standard GitHub Actions safeguard against leaking secrets to untrusted code.
+
+If any of these four steps fails, the job fails, and that failure is what later blocks the merge.
+
+## Workflow 2: opening and auto-merging the PR
+
+```yaml
+name: Auto PR & Merge
+
+on:
+  push:
+    branches-ignore: [master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-and-automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create PR if one doesn't exist
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          existing=$(gh pr list --head "${{ github.ref_name }}" --base master --json number --jq '.[0].number')
+          if [ -z "$existing" ]; then
+            gh pr create \
+              --base master \
+              --head "${{ github.ref_name }}" \
+              --title "${{ github.ref_name }}" \
+              --body "Auto-created from push to \`${{ github.ref_name }}\`."
+            number=$(gh pr list --head "${{ github.ref_name }}" --base master --json number --jq '.[0].number')
+          else
+            number=$existing
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge "${{ steps.pr.outputs.number }}" --squash --auto
+```
+
+This one triggers on the same `push: branches-ignore: [master]` event as CI, so pushing to any feature branch kicks off both workflows at once.
+
+### Permissions
+
+```yaml
+permissions:
+  contents: write
+  pull-requests: write
+```
+
+By default, the automatic `GITHUB_TOKEN` GitHub Actions gives each workflow run is read-only. This workflow needs to *create* a PR and *write* to it (enabling auto-merge counts as a write), so it explicitly requests `contents: write` and `pull-requests: write`. Scoping permissions like this, rather than granting broad access, is good practice — the token can do exactly what this job needs and nothing more.
+
+### Idempotent PR creation
+
+```bash
+existing=$(gh pr list --head "${{ github.ref_name }}" --base master --json number --jq '.[0].number')
+if [ -z "$existing" ]; then
+  gh pr create ...
+```
+
+Every push to a branch re-triggers this workflow — including the second, third, and tenth push to the same branch. Rather than trying to create a duplicate PR each time (which `gh pr create` would reject), the script first checks whether a PR from this branch to `master` already exists via `gh pr list`. It only calls `gh pr create` if `existing` is empty. Either way, the PR number ends up in `$GITHUB_OUTPUT` as a step output, so the next step can reference it as `steps.pr.outputs.number`.
+
+### Auto-merge, not immediate merge
+
+```bash
+gh pr merge "${{ steps.pr.outputs.number }}" --squash --auto
+```
+
+This is the key line, and the one most likely to be misread: `--auto` does **not** mean "merge right now." It tells GitHub to merge automatically **once all required status checks pass and branch protection is satisfied** — which is exactly the CI workflow described above. So the actual sequence for a typical push is:
+
+1. Push to a feature branch.
+2. `ci.yml` and `auto-pr-merge.yml` both start.
+3. `auto-pr-merge.yml` finishes almost immediately — it opens the PR and flags it for auto-merge, then the job is done.
+4. `ci.yml` takes longer, running through install, lint, typecheck, and build.
+5. If CI passes, GitHub's auto-merge kicks in and squash-merges the PR into `master`.
+6. If CI fails, the PR just sits there un-merged until a new, passing commit is pushed.
+
+`--squash` collapses all of the branch's commits into a single commit on `master`, keeping the history on the main branch linear and readable, even if the feature branch itself has a messy string of WIP commits.
+
+## Why split it into two workflows instead of one?
+
+They could technically live in a single YAML file, but keeping them separate has a couple of advantages:
+
+- **Independent status.** The CI job's pass/fail is what branch protection checks. Bundling the PR-creation logic into the same job would make failures harder to read at a glance ("did the *build* fail, or did the `gh pr create` step fail?").
+- **Different blast radius.** The auto-merge workflow needs write permissions to the repo; the CI workflow only needs to read code and run it. Splitting them means the elevated permissions are scoped to the smallest job that actually needs them.
+- **They don't need each other's output.** Both just react to the same `push` event and do their own thing. GitHub's branch protection rules are what tie the two together — the auto-merge step is a promise it can't cash until CI reports success.
+
+## What this buys in practice
+
+For a solo project like this one, the net effect is: push a branch, and if the build is clean, it ships to `master` with no further action. If it's broken, the PR waits. There's no separate "remember to deploy" step, because the platform hosting the site (in this case, Vercel) is already watching `master` for new commits — CI/CD here is really just the gate that decides *whether* a commit is allowed to land on that branch, not the deploy itself.
+
+If you're setting up something similar, the pieces worth borrowing are: split checks and merge-automation into separate workflows, scope each workflow's permissions to the minimum it needs, and use `gh pr merge --auto` rather than trying to sequence "wait for CI, then merge" by hand.
