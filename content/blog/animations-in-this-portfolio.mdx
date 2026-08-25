@@ -29,6 +29,8 @@ In this example:
 
 Most of the animations on this site are built from that same basic pattern.
 
+![The hero section on page load, with the heading, buttons, photo, and floating card in their final resting position](/blog/animations/hero.jpg)
+
 ## Sections fading in while scrolling
 
 The sections on the home page, like Skills, Experience, and Projects, fade in as they enter the screen.
@@ -113,7 +115,11 @@ const staggerContainer = {
 };
 ```
 
-Each child still uses its own fade-in animation, but the parent adds a short delay before starting the next one, so the cards appear left to right (or top to bottom) instead of all at once. The small stat cards in the About Me section use the same trick.
+Each child still uses its own fade-in animation, but the parent adds a short delay before starting the next one, so the cards appear left to right (or top to bottom) instead of all at once. The small stat cards in the About Me section use the same trick, and so does the list of posts on the blog page.
+
+![The About Me stat cards mid-stagger: the top two have already faded in while the bottom two are still animating into place](/blog/animations/about-stagger.jpg)
+
+![The blog list page, where each post card fades in top to bottom using the same staggered Reveal](/blog/animations/blog-cards.jpg)
 
 ## The photo moving as you scroll
 
@@ -131,6 +137,8 @@ Breaking that second line down, `useTransform` takes three things: a value to wa
 The card next to the photo uses the same setup, but with the range flipped: `[90, -90]` instead of `[-90, 90]`. So while the photo drifts downward as you scroll, the card drifts upward by the same amount. Photo and card moving in opposite directions at the same time is what sells the "sitting at different depths" illusion. Nothing fancy, just two elements reading the same scroll number and reacting to it differently.
 
 The parallax effect is also disabled when someone has reduced motion enabled in their system settings. In that case, the image stays still.
+
+![The hero photo and floating card partway through a scroll: the photo has shifted up and the card has shifted down, in opposite directions](/blog/animations/hero-parallax.jpg)
 
 ## Panels that open and close
 
@@ -199,9 +207,13 @@ A few details worth pointing out that don't show up in the shorter snippet above
 
 So `open` is the one piece of state the whole component revolves around: a plain `true`/`false` boolean living in whatever component renders the `Collapse`, flipped by a button's `onClick`. Everything else, the height animation, the fade, the exit timing, is `Collapse` reacting to that single value changing.
 
+![The Skills section with "Core stack" expanded, showing extra badges that faded in below the visible row](/blog/animations/skills-collapse.jpg)
+
+![An experience card expanded with "Show less", revealing the full responsibilities and highlights list](/blog/animations/experience-collapse.jpg)
+
 ## Cards that glow around the edge on hover
 
-The project cards and blog post cards have a soft gradient outline that appears and slowly spins when you hover over them. That one's actually not Framer Motion at all. It's plain CSS, using a class called `gradient-border`:
+The project cards have a soft gradient outline that appears and slowly spins when you hover over them. That one's actually not Framer Motion at all. It's plain CSS, using a class called `gradient-border`:
 
 ```css
 .gradient-border::before {
@@ -222,6 +234,8 @@ The project cards and blog post cards have a soft gradient outline that appears 
 ```
 
 Here's what's actually going on: `::before` creates an invisible extra layer sitting just behind the card, shaped like a thin outline (a `mask` trick cuts a card-shaped hole out of the middle, so only the edge shows). That outline is painted with a `conic-gradient`, a gradient that sweeps around in a circle rather than in a straight line, like a color wheel. Normally it's invisible (`opacity: 0`). The moment you hover or focus the card, it fades in and starts spinning, because the `gradient-border-spin` animation slowly rotates the gradient's angle from 0 to 360 degrees on a loop.
+
+![A project card with the mouse hovering over it, showing the glowing gradient outline around its edge](/blog/animations/gradient-border.jpg)
 
 It's a nice example of the two tools working together, not against each other: Framer Motion handles animations tied to React state (scroll, clicks, visibility), while this one is a pure CSS `:hover` effect that doesn't need any JavaScript at all. Both respect reduced-motion: the CSS version turns the spin off with a `@media (prefers-reduced-motion: reduce)` rule, the same idea as `useReducedMotion()` on the Framer Motion side, just written for plain CSS instead.
 
