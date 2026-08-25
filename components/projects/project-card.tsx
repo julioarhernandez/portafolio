@@ -7,29 +7,35 @@ import { useState } from "react";
 import { GithubIcon } from "@/components/layout/brand-icons";
 import { Collapse } from "@/components/motion/collapse";
 import { RevealItem } from "@/components/motion/reveal";
-import { ProjectImagePlaceholder } from "@/components/projects/project-image-placeholder";
+import { ProjectMockImage, projectSurfaceClasses } from "@/components/projects/project-mock-image";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Project } from "@/types";
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [open, setOpen] = useState(false);
+  const surfaceClass = projectSurfaceClasses[index % projectSurfaceClasses.length];
+  const primaryHref = project.demoUrl ?? project.repoUrl;
+
   return (
     <RevealItem>
-      <Card className="h-full py-0">
-        <ProjectImagePlaceholder icon={project.icon} index={index} />
-        <CardHeader className="mt-4">
-          <CardTitle className="text-base">{project.name}</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-1 flex-col space-y-4 pb-5">
-          <p className="text-sm text-muted-foreground">{project.description}</p>
+      <div
+        className={`${surfaceClass} gradient-border flex h-full flex-col gap-6 rounded-2xl p-6 ring-1 ring-foreground/10 sm:flex-row sm:items-center`}
+      >
+        <div className="flex flex-1 flex-col">
+          <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+            Product
+          </span>
+          <h3 className="font-display mt-2 text-xl leading-tight font-semibold text-balance">
+            {project.name}
+          </h3>
+          <p className="mt-2 text-sm text-muted-foreground">{project.description}</p>
 
           <div>
             <button
               type="button"
               aria-expanded={open}
               onClick={() => setOpen((value) => !value)}
-              className="flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="mt-3 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <span className="underline underline-offset-2">Key engineering decisions</span>
               <ChevronDown
@@ -46,42 +52,50 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             </Collapse>
           </div>
 
-          <div className="mt-auto space-y-4">
-            <div className="flex flex-wrap gap-1.5">
-              {project.technologies.map((tech) => (
-                <Badge key={tech} variant="secondary">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4 pt-1 text-sm">
-              {project.repoUrl && (
-                <Link
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground"
-                >
-                  <GithubIcon className="size-4" />
-                  Repo
-                </Link>
-              )}
-              {project.demoUrl && (
-                <Link
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground"
-                >
-                  <ExternalLink className="size-4" />
-                  Demo
-                </Link>
-              )}
-            </div>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {project.technologies.map((tech) => (
+              <Badge
+                key={tech}
+                variant="secondary"
+                className="bg-card/90 text-foreground ring-1 ring-foreground/10"
+              >
+                {tech}
+              </Badge>
+            ))}
           </div>
-        </CardContent>
-      </Card>
+
+          <div className="mt-5 flex items-center gap-4 text-sm">
+            {primaryHref && (
+              <Link
+                href={primaryHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 font-medium text-foreground hover:opacity-80"
+              >
+                View project
+                <ExternalLink className="size-4" aria-hidden="true" />
+              </Link>
+            )}
+            {project.demoUrl && project.repoUrl && (
+              <Link
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground"
+              >
+                <GithubIcon className="size-4" />
+                Repo
+              </Link>
+            )}
+          </div>
+        </div>
+
+        <ProjectMockImage
+          icon={project.icon}
+          index={index}
+          className="h-40 w-full sm:h-44 sm:w-36"
+        />
+      </div>
     </RevealItem>
   );
 }

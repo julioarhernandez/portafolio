@@ -18,6 +18,58 @@ export const siteConfig = {
   resumeUrl: "/JULIO-RODRIGUEZ-RESUME.pdf",
 } as const;
 
+export const aboutQuote = {
+  text: "I love solving complex problems and crafting interfaces people enjoy using every day.",
+  highlight: "enjoy using",
+} as const;
+
+export const aboutIntro = [
+  "I'm a software engineer who thrives at the intersection of product, design, and engineering, building reliable, accessible web applications with React, Vue, and modern JavaScript.",
+  "I care about the engineering behind great experiences: component architecture, performance, accessibility, and the details that make software feel fast and intuitive.",
+] as const;
+
+export const aboutStats = [
+  { icon: "code", value: "20+", label: "Years building for the web" },
+  { icon: "rocket", value: "25+", label: "Successful projects" },
+  { icon: "users", value: "15+", label: "Happy teams collaborated" },
+  { icon: "globe", value: "20+", label: "Technologies worked with" },
+] as const;
+
+export const capabilities = [
+  {
+    icon: "lightbulb",
+    title: "Product thinking",
+    description: "I align technical solutions with user needs and business goals to create impact.",
+    items: ["User research", "Roadmapping", "Prioritization", "Product strategy"],
+  },
+  {
+    icon: "component",
+    title: "Interface systems",
+    description: "I design and build accessible, consistent interfaces that scale.",
+    items: ["Design systems", "Component libraries", "Prototyping", "Accessibility"],
+  },
+  {
+    icon: "code",
+    title: "Engineering craft",
+    description: "I write clean, tested code and ship performant, reliable applications.",
+    items: ["Clean code", "Testing", "Performance", "DevOps mindset"],
+  },
+] as const;
+
+export const heroStats = [
+  { icon: "lightbulb", value: "20+", label: "Years experience" },
+  { icon: "target", value: "25+", label: "Projects shipped" },
+  { icon: "smile", value: "100%", label: "Client satisfaction" },
+  { icon: "infinity", value: "∞", label: "Curiosity & learning" },
+] as const;
+
+export const trustedBy = [
+  { name: "Norwegian Cruise Line Holdings" },
+  { name: "PROS" },
+  { name: "LVMH OnBoard.com" },
+  { name: "Original Impressions" },
+] as const;
+
 export const navItems: NavItem[] = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
@@ -160,6 +212,12 @@ export const education: EducationItem[] = [
     period: "2001 - 2006",
   },
 ];
+
+export const educationHighlight = {
+  title: "Always exploring",
+  description:
+    "I enjoy learning and applying new technologies that help solve real-world problems.",
+};
 
 export const featuredSkills = [
   "HTML5",

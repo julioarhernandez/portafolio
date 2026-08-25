@@ -25,7 +25,7 @@ export function SkillsSection() {
     <section id="skills" tabIndex={-1} className="border-b border-border/70 bg-secondary/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
       <Reveal>
-        <h2 className="section-heading font-display text-3xl font-medium tracking-tight sm:text-4xl">
+        <h2 className="section-heading font-heading text-xl font-semibold uppercase tracking-wide text-primary sm:text-2xl">
           Skills &amp; technology
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">

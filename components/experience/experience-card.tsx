@@ -23,25 +23,28 @@ function renderWithBold(text: string) {
 export function ExperienceCard({ item }: { item: ExperienceItem }) {
   const [open, setOpen] = useState(false);
   return (
-    <RevealItem className="relative pl-8 sm:pl-10">
+    <RevealItem className="relative pl-8 sm:pl-0">
       <span
         aria-hidden="true"
-        className="absolute top-1 left-4 size-4 -translate-x-1/2 rounded-full border-2 border-background bg-primary shadow-[0_0_0_1px_var(--primary)]"
+        className="absolute top-1 left-4 size-4 -translate-x-1/2 rounded-full border-2 border-background bg-primary shadow-[0_0_0_1px_var(--primary)] sm:left-[10.5rem]"
       />
-      <article>
-        <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-          <div>
-            <h3 className="text-base font-semibold leading-tight sm:text-lg">
-              {item.role}
-            </h3>
-            <p className="mt-1 text-sm font-medium text-primary">
-              {item.company}
-            </p>
-          </div>
-          <p className="text-sm font-medium text-muted-foreground sm:shrink-0">
-            {item.period}
-          </p>
-        </header>
+      <article className="sm:flex sm:items-start sm:gap-6">
+        <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase sm:w-36 sm:shrink-0 sm:pt-1 sm:text-right sm:text-sm sm:normal-case sm:whitespace-nowrap">
+          {item.period}
+        </p>
+
+        <div className="hidden sm:block sm:w-4 sm:shrink-0" aria-hidden="true" />
+
+        <div className="mt-1 sm:mt-0 sm:w-36 sm:shrink-0 sm:pt-1">
+          <span className="inline-block rounded-md border border-border bg-secondary px-3 py-1.5 text-sm font-semibold text-secondary-foreground">
+            {item.company}
+          </span>
+        </div>
+
+        <div className="mt-2 flex-1 sm:mt-0">
+        <h3 className="text-base font-semibold leading-tight sm:text-lg">
+          {item.role}
+        </h3>
 
         <p className="mt-2 hidden max-w-5xl text-sm leading-6 text-muted-foreground sm:block">
           {item.summary}
@@ -98,6 +101,7 @@ export function ExperienceCard({ item }: { item: ExperienceItem }) {
               </div>
             </div>
           </Collapse>
+        </div>
         </div>
       </article>
     </RevealItem>

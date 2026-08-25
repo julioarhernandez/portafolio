@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/about/about-section";
+import { CapabilitiesSection } from "@/components/about/capabilities-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { EducationSection } from "@/components/experience/education-section";
 import { ExperienceSection } from "@/components/experience/experience-section";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <HeroSection />
       <AboutSection />
+      <CapabilitiesSection />
       <ExperienceSection />
       <EducationSection />
       <SkillsSection />

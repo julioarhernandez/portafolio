@@ -3,8 +3,11 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { MDXImage } from "@/components/blog/mdx-image";
 import { Badge } from "@/components/ui/badge";
 import { getAllPosts, getPostBySlug, mdxOptions } from "@/lib/mdx";
+
+const mdxComponents = { img: MDXImage };
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -72,7 +75,7 @@ export default async function BlogPostPage({
         ))}
       </div>
       <div className="prose mt-10 max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-a:text-primary prose-a:decoration-primary/40 prose-blockquote:border-primary prose-blockquote:text-muted-foreground prose-pre:bg-slate-950 prose-pre:text-slate-100 prose-pre:[&_code]:text-inherit">
-        <MDXRemote source={content} options={mdxOptions} />
+        <MDXRemote source={content} options={mdxOptions} components={mdxComponents} />
       </div>
     </article>
   );
