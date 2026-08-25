@@ -60,7 +60,7 @@ export function AboutSection() {
                 return (
                   <div
                     key={stat.label}
-                    className="rounded-2xl border border-border/70 bg-card/60 p-4"
+                    className="gradient-border rounded-2xl border border-border/70 bg-card/60 p-4"
                   >
                     <Icon className="size-5 text-primary" strokeWidth={1.75} />
                     <p className="mt-4 font-display text-2xl font-semibold tracking-tight">{stat.value}</p>

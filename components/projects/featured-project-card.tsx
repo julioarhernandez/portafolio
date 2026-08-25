@@ -13,7 +13,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
 
   return (
     <RevealItem>
-      <div className="relative overflow-hidden rounded-3xl bg-primary text-primary-foreground shadow-xl ring-1 ring-foreground/10">
+      <div className="gradient-border relative overflow-hidden rounded-3xl bg-primary text-primary-foreground shadow-xl ring-1 ring-foreground/10">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{

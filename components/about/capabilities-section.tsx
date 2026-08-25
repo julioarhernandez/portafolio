@@ -34,7 +34,7 @@ export function CapabilitiesSection() {
             return (
               <RevealItem
                 key={capability.title}
-                className={`relative flex flex-col rounded-3xl border border-border/60 p-8 ${cardTints[index % cardTints.length]}`}
+                className={`gradient-border relative flex flex-col rounded-3xl border border-border/60 p-8 ${cardTints[index % cardTints.length]}`}
               >
                 <span className="font-display text-5xl font-semibold tracking-tight text-foreground/25 sm:text-6xl">
                   {String(index + 1).padStart(2, "0")}
