@@ -239,6 +239,44 @@ Here's what's actually going on: `::before` creates an invisible extra layer sit
 
 It's a nice example of the two tools working together, not against each other: Framer Motion handles animations tied to React state (scroll, clicks, visibility), while this one is a pure CSS `:hover` effect that doesn't need any JavaScript at all. Both respect reduced-motion: the CSS version turns the spin off with a `@media (prefers-reduced-motion: reduce)` rule, the same idea as `useReducedMotion()` on the Framer Motion side, just written for plain CSS instead.
 
+## The spinning "clean code" badge
+
+The Education section has a small circular badge that spins slowly on its own, forever, with text curving around the ring. This one isn't triggered by anything. No scroll, no hover, no click. It just runs.
+
+![The "Always exploring" badge in the Education section, with text curving around a spinning ring](/blog/animations/code-ring.jpg)
+
+It's built from two pieces: an SVG with text following a circular path, and a plain CSS animation spinning the whole SVG.
+
+```tsx
+<svg viewBox="0 0 200 200">
+  <path id="code-ring-path" fill="none" d="M 100,100 m -84,0 a 84,84 0 1,1 168,0 a 84,84 0 1,1 -168,0" />
+  <text>
+    <textPath href="#code-ring-path">
+      CLEAN CODE &#8226; ELEGANT CODE &#8226; CLEAN CODE &#8226; ELEGANT CODE &#8226;
+    </textPath>
+  </text>
+</svg>
+```
+
+The `path` here is invisible (`fill="none"`), it's just a circle drawn with SVG's arc syntax, used purely as a guide rail. `textPath` is the actual trick: instead of writing text in a straight line, it tells the browser to bend that text along the shape of a path, letter by letter. The text is repeated a few times back to back so the ring never shows an empty gap.
+
+The spinning itself is a two-line CSS animation on the SVG element:
+
+```css
+.code-ring-svg {
+  animation: code-ring-spin 48s linear infinite;
+}
+
+@keyframes code-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+```
+
+`infinite` means it never stops, and `48s` is deliberately slow: a full rotation takes 48 seconds, so it reads as a calm, ambient detail rather than something demanding attention. The little code icon sitting in the center of the ring is a separate, absolutely positioned element that doesn't rotate at all, so it stays upright the whole time while the text spins around it.
+
+This is the simplest animation on the whole site, and worth noticing for that reason: no Framer Motion, no state, no trigger. Just a shape, some text bent onto it, and one CSS `@keyframes` rule looping forever.
+
 ## Keeping the animation code manageable
 
 There are a few things that keep the animation code from being repeated everywhere:
@@ -247,6 +285,6 @@ There are a few things that keep the animation code from being repeated everywhe
 - `Reveal` and `Collapse` handle the patterns that get used repeatedly.
 - Motion is disabled for people who have enabled reduced motion, whether it's a Framer Motion animation or a plain CSS one like the gradient border.
 
-The site doesn't use a huge animation system. Most of it comes down to a few Framer Motion settings, `initial`, `animate`, and `whileInView`, with `useScroll` and `useTransform` added for the scrolling effects, plus one small CSS-only effect for the hover glow. Every one of them is triggered by something simple: a scroll position, a click, or the mouse hovering a card.
+The site doesn't use a huge animation system. Most of it comes down to a few Framer Motion settings, `initial`, `animate`, and `whileInView`, with `useScroll` and `useTransform` added for the scrolling effects, plus a couple of small CSS-only effects for the hover glow and the spinning badge. Every one of them is triggered by something simple: a scroll position, a click, the mouse hovering a card, or nothing at all.
 
 If you're learning Framer Motion, simple fade-ins are a good place to start. Once those make sense, scroll-based effects are easier to understand.
