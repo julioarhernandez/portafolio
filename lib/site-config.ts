@@ -18,6 +18,23 @@ export const siteConfig = {
   resumeUrl: "/JULIO-RODRIGUEZ-RESUME.pdf",
 } as const;
 
+export const aboutQuote = {
+  text: "I love solving complex problems and crafting interfaces people enjoy using every day.",
+  highlight: "enjoy using",
+} as const;
+
+export const aboutIntro = [
+  "I'm a software engineer who thrives at the intersection of product, design, and engineering, building reliable, accessible web applications with React, Vue, and modern JavaScript.",
+  "I care about the engineering behind great experiences: component architecture, performance, accessibility, and the details that make software feel fast and intuitive.",
+] as const;
+
+export const aboutStats = [
+  { icon: "code", value: "20+", label: "Years building for the web" },
+  { icon: "rocket", value: "25+", label: "Successful projects" },
+  { icon: "users", value: "15+", label: "Happy teams collaborated" },
+  { icon: "globe", value: "20+", label: "Technologies worked with" },
+] as const;
+
 export const heroStats = [
   { icon: "lightbulb", value: "20+", label: "Years experience" },
   { icon: "target", value: "25+", label: "Projects shipped" },
