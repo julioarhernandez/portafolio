@@ -433,6 +433,51 @@
   background-size: 16px 16px;
 }
 
+.code-ring {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  flex-shrink: 0;
+}
+
+.code-ring-svg {
+  width: 100%;
+  height: 100%;
+  animation: code-ring-spin 48s linear infinite;
+}
+
+.code-ring-text {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  fill: color-mix(in srgb, var(--primary) 55%, transparent);
+}
+
+.code-ring-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--foreground) 18%, transparent);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes code-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

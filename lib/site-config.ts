@@ -213,6 +213,12 @@ export const education: EducationItem[] = [
   },
 ];
 
+export const educationHighlight = {
+  title: "Always exploring",
+  description:
+    "I enjoy learning and applying new technologies that help solve real-world problems.",
+};
+
 export const featuredSkills = [
   "HTML5",
   "CSS3",
