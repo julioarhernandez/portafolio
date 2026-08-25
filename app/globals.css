@@ -186,6 +186,30 @@
   );
 }
 
+.project-surface-primary-accent {
+  background: color-mix(in oklab, var(--theme-primary) 14%, var(--card));
+}
+
+.project-surface-accent-border {
+  background: color-mix(in oklab, var(--theme-accent) 16%, var(--card));
+}
+
+.project-surface-border-primary {
+  background: color-mix(
+    in oklab,
+    color-mix(in oklab, var(--theme-primary), blue 45%) 14%,
+    var(--card)
+  );
+}
+
+.project-surface-teal {
+  background: color-mix(
+    in oklab,
+    color-mix(in oklab, var(--theme-accent), teal 55%) 16%,
+    var(--card)
+  );
+}
+
 @layer components {
   .theme-badge-accent {
     @apply border-accent/70 bg-accent/35 text-accent-foreground;
