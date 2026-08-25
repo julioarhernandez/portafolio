@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
       {/* Honeypot: hidden from real users, catches simple bots. */}
       <input
         type="text"
@@ -54,24 +55,37 @@ export function ContactForm() {
 
       <div className="space-y-1.5">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" aria-invalid={!!errors.name} {...register("name")} />
+        <Input id="name" placeholder="Name" aria-invalid={!!errors.name} {...register("name")} />
         {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
       </div>
 
       <div className="space-y-1.5">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" aria-invalid={!!errors.email} {...register("email")} />
+        <Input
+          id="email"
+          type="email"
+          placeholder="Email"
+          aria-invalid={!!errors.email}
+          {...register("email")}
+        />
         {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="message">Message</Label>
-        <Textarea id="message" rows={5} aria-invalid={!!errors.message} {...register("message")} />
+        <Label htmlFor="message">Project details</Label>
+        <Textarea
+          id="message"
+          rows={5}
+          placeholder="Tell me about your project, goals, and timeline…"
+          aria-invalid={!!errors.message}
+          {...register("message")}
+        />
         {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
       </div>
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending…" : "Send Message"}
+      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full">
+        {isSubmitting ? "Sending…" : "Send inquiry"}
+        <ArrowRight className="size-4" data-icon="inline-end" />
       </Button>
     </form>
   );
