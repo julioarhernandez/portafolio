@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { ArrowDown, Download, Infinity as InfinityIcon, Lightbulb, Mail, Smile, Target } from "lucide-react";
+import { Download, Infinity as InfinityIcon, Lightbulb, Mail, Smile, Target } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { heroStats, siteConfig, trustedBy } from "@/lib/site-config";
+import { heroStats, siteConfig } from "@/lib/site-config";
 
 const statIconMap = {
   lightbulb: Lightbulb,
@@ -108,16 +108,6 @@ export function HeroSection() {
           </aside>
         </motion.div>
 
-        <motion.a
-          initial={false}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          href="#about"
-          className="absolute bottom-0 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:flex"
-        >
-          <ArrowDown className="size-4" />
-          Scroll to learn more
-        </motion.a>
       </div>
 
       <motion.div
@@ -146,20 +136,6 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="relative border-t border-border/60 bg-secondary/30">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Trusted by great teams
-          </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            {trustedBy.map((company) => (
-              <span key={company.name} className="text-sm font-semibold text-muted-foreground/80">
-                {company.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
