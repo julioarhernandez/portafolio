@@ -2,11 +2,18 @@
 
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { ArrowDown, Download, Infinity as InfinityIcon, Lightbulb, Mail, Smile, Target } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site-config";
+import { heroStats, siteConfig, trustedBy } from "@/lib/site-config";
+
+const statIconMap = {
+  lightbulb: Lightbulb,
+  target: Target,
+  smile: Smile,
+  infinity: InfinityIcon,
+} as const;
 
 const container: Variants = {
   hidden: {},
@@ -21,7 +28,7 @@ const item: Variants = {
 export function HeroSection() {
   return (
     <section className="relative isolate -mt-14 overflow-hidden pt-14">
-      <div className="mx-auto grid min-h-[min(820px,100dvh)] w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(390px,0.9fr)] lg:gap-16 lg:py-24">
+      <div className="relative mx-auto grid min-h-[min(820px,100dvh)] w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(390px,0.9fr)] lg:gap-16 lg:py-24">
         <motion.div initial={false} animate="visible" variants={container} className="max-w-2xl">
           <motion.p variants={item} className="text-xs font-semibold uppercase tracking-[0.22em] text-primary sm:text-sm">
             Hi, I&apos;m {siteConfig.name}
@@ -100,18 +107,59 @@ export function HeroSection() {
             </div>
           </aside>
         </motion.div>
+
+        <motion.a
+          initial={false}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          href="#about"
+          className="absolute bottom-0 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:flex"
+        >
+          <ArrowDown className="size-4" />
+          Scroll to learn more
+        </motion.a>
       </div>
 
-      <motion.a
+      <motion.div
         initial={false}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-        href="#about"
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:flex"
+        animate="visible"
+        variants={container}
+        className="relative border-t border-border/60"
       >
-        <ArrowDown className="size-4" />
-        Scroll to learn more
-      </motion.a>
+        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-border/60 px-4 sm:px-6 lg:grid-cols-4 lg:divide-y-0">
+          {heroStats.map((stat) => {
+            const Icon = statIconMap[stat.icon];
+            return (
+              <motion.div
+                key={stat.label}
+                variants={item}
+                className="flex items-center gap-3 px-4 py-6 sm:px-6"
+              >
+                <Icon className="size-5 shrink-0 text-primary" strokeWidth={1.75} />
+                <div>
+                  <p className="font-display text-2xl font-semibold tracking-tight">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      <div className="relative border-t border-border/60 bg-secondary/30">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Trusted by great teams
+          </p>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            {trustedBy.map((company) => (
+              <span key={company.name} className="text-sm font-semibold text-muted-foreground/80">
+                {company.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

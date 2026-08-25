@@ -18,6 +18,20 @@ export const siteConfig = {
   resumeUrl: "/JULIO-RODRIGUEZ-RESUME.pdf",
 } as const;
 
+export const heroStats = [
+  { icon: "lightbulb", value: "20+", label: "Years experience" },
+  { icon: "target", value: "25+", label: "Projects shipped" },
+  { icon: "smile", value: "100%", label: "Client satisfaction" },
+  { icon: "infinity", value: "∞", label: "Curiosity & learning" },
+] as const;
+
+export const trustedBy = [
+  { name: "Norwegian Cruise Line Holdings" },
+  { name: "PROS" },
+  { name: "LVMH OnBoard.com" },
+  { name: "Original Impressions" },
+] as const;
+
 export const navItems: NavItem[] = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
