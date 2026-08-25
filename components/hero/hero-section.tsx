@@ -1,9 +1,10 @@
 ﻿"use client";
 
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Download, Infinity as InfinityIcon, Lightbulb, Mail, Smile, Target } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { heroStats, siteConfig } from "@/lib/site-config";
@@ -26,6 +27,16 @@ const item: Variants = {
 };
 
 export function HeroSection() {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [-90, 90]);
+  const cardY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [90, -90]);
+
   return (
     <section className="relative isolate -mt-14 overflow-hidden pt-14">
       <div className="relative mx-auto grid min-h-[min(820px,100dvh)] w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(390px,0.9fr)] lg:gap-16 lg:py-24">
@@ -81,18 +92,23 @@ export function HeroSection() {
           transition={{ delay: 0.35, duration: 0.6, ease: "easeOut" }}
           className="relative mx-auto w-full max-w-[470px] pb-10 sm:pb-0 lg:mr-4"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border/60 bg-secondary/30 shadow-2xl shadow-foreground/10">
-            <Image
-              src="/hero-image-dev.webp"
-              alt="Julio Rodriguez, software engineer"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover object-center"
-            />
+          <div ref={imageRef} className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border/60 bg-secondary/30 shadow-2xl shadow-foreground/10">
+            <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[16%] h-[132%] will-change-transform">
+              <Image
+                src="/hero-image-dev.webp"
+                alt="Julio Rodriguez, software engineer"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
           </div>
 
-          <aside className="absolute -bottom-8 right-4 z-10 w-[calc(100%-2rem)] max-w-xs rounded-2xl border border-border/70 bg-card/95 p-5 shadow-xl shadow-foreground/10 backdrop-blur sm:bottom-6 sm:right-[-1.5rem]">
+          <motion.aside
+            style={{ y: cardY }}
+            className="absolute -bottom-8 right-4 z-10 w-[calc(100%-2rem)] max-w-xs rounded-2xl border border-border/70 bg-card/95 p-5 shadow-xl shadow-foreground/10 backdrop-blur will-change-transform sm:bottom-6 sm:right-[-1.5rem]"
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Currently building</p>
             <p className="mt-4 text-lg font-semibold tracking-tight">Interfaces that feel clear, fast and human.</p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -105,7 +121,7 @@ export function HeroSection() {
             <div className="mt-7 border-t border-border/70 pt-4 text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">20+</span> years shaping the web
             </div>
-          </aside>
+          </motion.aside>
         </motion.div>
 
       </div>
