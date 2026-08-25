@@ -1,6 +1,6 @@
 import { Code2, Globe, Rocket, Users } from "lucide-react";
 
-import { Reveal } from "@/components/motion/reveal";
+import { Reveal, RevealItem } from "@/components/motion/reveal";
 import { aboutQuote, aboutStats, siteConfig } from "@/lib/site-config";
 
 const statIconMap = {
@@ -54,18 +54,18 @@ export function AboutSection() {
               <DotGrid />
             </div>
 
-            <Reveal className="mt-8 grid grid-cols-2 gap-4">
+            <Reveal stagger className="mt-8 grid grid-cols-2 gap-4">
               {aboutStats.map((stat) => {
                 const Icon = statIconMap[stat.icon];
                 return (
-                  <div
+                  <RevealItem
                     key={stat.label}
                     className="gradient-border rounded-2xl border border-border/70 bg-card/60 p-4"
                   >
                     <Icon className="size-5 text-primary" strokeWidth={1.75} />
                     <p className="mt-4 font-display text-2xl font-semibold tracking-tight">{stat.value}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
+                  </RevealItem>
                 );
               })}
             </Reveal>
